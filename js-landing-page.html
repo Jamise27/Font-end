@@ -1,0 +1,3565 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Cơ Bản — Bản Đồ Kiến Thức</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --blue: #9ac5e5;
+        --teal: #4fb19d;
+        --yellow: #edce7a;
+        --rose: #c98c9a;
+        --pink: #e5c6c3;
+        --ink: #2c2a3a;
+        --ink-soft: #5b5870;
+        --paper: #fbf9f6;
+        --card: #ffffff;
+        --line: #e9e4de;
+        --radius: 20px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3,
+      .display {
+        font-family: "Baloo 2", sans-serif;
+      }
+      code,
+      .mono,
+      pre {
+        font-family: "JetBrains Mono", monospace;
+      }
+      a {
+        color: inherit;
+      }
+
+      /* background texture */
+      .bg-blob {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+      }
+      .bg-blob span {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.35;
+      }
+      .bg-blob .b1 {
+        width: 380px;
+        height: 380px;
+        background: var(--blue);
+        top: -120px;
+        left: -100px;
+      }
+      .bg-blob .b2 {
+        width: 340px;
+        height: 340px;
+        background: var(--pink);
+        top: 20%;
+        right: -140px;
+      }
+      .bg-blob .b3 {
+        width: 300px;
+        height: 300px;
+        background: var(--yellow);
+        bottom: 0;
+        left: 10%;
+      }
+      .bg-blob .b4 {
+        width: 280px;
+        height: 280px;
+        background: var(--teal);
+        bottom: -100px;
+        right: 15%;
+      }
+
+      /* NAV */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(10px);
+        background: rgba(251, 249, 246, 0.85);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 14px 24px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        overflow-x: auto;
+      }
+      .nav-logo {
+        font-family: "Baloo 2", sans-serif;
+        font-weight: 800;
+        font-size: 1.15rem;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .nav-logo .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--yellow);
+        box-shadow:
+          6px 0 0 var(--blue),
+          12px 0 0 var(--rose);
+      }
+      .nav-links {
+        display: flex;
+        gap: 6px;
+        flex-wrap: nowrap;
+      }
+      .nav-links a {
+        white-space: nowrap;
+        font-size: 0.82rem;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 7px 13px;
+        border-radius: 100px;
+        color: var(--ink-soft);
+        border: 1.5px solid transparent;
+        transition: 0.2s;
+      }
+      .nav-links a:hover {
+        border-color: var(--line);
+        color: var(--ink);
+        background: #fff;
+      }
+
+      /* HERO */
+      .hero {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 64px 24px 40px;
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 40px;
+        align-items: center;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--teal);
+        background: #e9f6f2;
+        padding: 6px 14px;
+        border-radius: 100px;
+        margin-bottom: 18px;
+      }
+      .hero h1 {
+        font-size: clamp(2.2rem, 5vw, 3.4rem);
+        line-height: 1.08;
+        margin: 0 0 18px;
+        font-weight: 800;
+      }
+      .hero h1 .accent {
+        color: var(--rose);
+      }
+      .hero p {
+        font-size: 1.05rem;
+        color: var(--ink-soft);
+        line-height: 1.7;
+        max-width: 46ch;
+        margin: 0 0 26px;
+      }
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .tag {
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: 100px;
+        color: var(--ink);
+      }
+      .tag.t1 {
+        background: var(--blue);
+      }
+      .tag.t2 {
+        background: var(--teal);
+        color: #fff;
+      }
+      .tag.t3 {
+        background: var(--yellow);
+      }
+      .tag.t4 {
+        background: var(--rose);
+        color: #fff;
+      }
+      .tag.t5 {
+        background: var(--pink);
+      }
+
+      .hero-code {
+        background: #2c2a3a;
+        border-radius: 18px;
+        padding: 22px 22px 18px;
+        color: #f4f1ea;
+        box-shadow: 0 20px 50px -18px rgba(44, 42, 58, 0.5);
+        font-size: 0.85rem;
+        line-height: 1.75;
+        position: relative;
+      }
+      .hero-code .dots {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+      .hero-code .dots span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .hero-code .dots span:nth-child(1) {
+        background: var(--rose);
+      }
+      .hero-code .dots span:nth-child(2) {
+        background: var(--yellow);
+      }
+      .hero-code .dots span:nth-child(3) {
+        background: var(--teal);
+      }
+      .hero-code .c-key {
+        color: var(--pink);
+      }
+      .hero-code .c-str {
+        color: var(--yellow);
+      }
+      .hero-code .c-fn {
+        color: var(--blue);
+      }
+      .hero-code .c-com {
+        color: #8f8ba3;
+      }
+
+      section {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 70px 24px;
+      }
+      .section-head {
+        max-width: 640px;
+        margin: 0 auto 40px;
+        text-align: center;
+      }
+      .section-head .kicker {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
+      .section-head h2 {
+        font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+        margin: 8px 0 10px;
+      }
+      .section-head p {
+        color: var(--ink-soft);
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      /* MIND MAP */
+      .mindmap-wrap {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 38px 20px;
+        overflow: hidden;
+      }
+      .mindmap {
+        position: relative;
+        max-width: 920px;
+        margin: 0 auto;
+        min-height: 940px;
+      }
+      .mm-center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, var(--rose), var(--blue));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #fff;
+        font-family: "Baloo 2", sans-serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        box-shadow: 0 18px 40px -14px rgba(201, 140, 154, 0.55);
+        z-index: 3;
+        padding: 8px;
+      }
+      .mm-node {
+        position: absolute;
+        width: 190px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: var(--card);
+        border: 2px solid var(--line);
+        z-index: 2;
+        box-shadow: 0 10px 24px -14px rgba(44, 42, 58, 0.18);
+        text-decoration: none;
+        color: var(--ink);
+        display: block;
+        transition: 0.25s;
+      }
+      .mm-node:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 28px -14px rgba(44, 42, 58, 0.28);
+      }
+      .mm-node .num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+      .mm-node .title {
+        font-family: "Baloo 2", sans-serif;
+        font-weight: 700;
+        font-size: 0.98rem;
+        margin-bottom: 4px;
+      }
+      .mm-node .desc {
+        font-size: 0.75rem;
+        color: var(--ink-soft);
+        line-height: 1.4;
+      }
+
+      .mm-node.n1 {
+        top: 4.8%;
+        left: 39.7%;
+      }
+      .mm-node.n1 .num {
+        background: var(--blue);
+      }
+      .mm-node.n2 {
+        top: 9.8%;
+        left: 59.2%;
+      }
+      .mm-node.n2 .num {
+        background: var(--teal);
+      }
+      .mm-node.n3 {
+        top: 23.4%;
+        left: 73.6%;
+      }
+      .mm-node.n3 .num {
+        background: var(--yellow);
+        color: var(--ink);
+      }
+      .mm-node.n4 {
+        top: 42%;
+        left: 78.8%;
+      }
+      .mm-node.n4 .num {
+        background: var(--rose);
+      }
+      .mm-node.n5 {
+        top: 60.6%;
+        left: 73.6%;
+      }
+      .mm-node.n5 .num {
+        background: var(--pink);
+        color: var(--ink);
+      }
+      .mm-node.n6 {
+        top: 74.3%;
+        left: 59.2%;
+      }
+      .mm-node.n6 .num {
+        background: var(--blue);
+      }
+      .mm-node.n7 {
+        top: 79.3%;
+        left: 39.7%;
+      }
+      .mm-node.n7 .num {
+        background: var(--teal);
+      }
+      .mm-node.n8 {
+        top: 74.3%;
+        left: 20.1%;
+      }
+      .mm-node.n8 .num {
+        background: var(--yellow);
+        color: var(--ink);
+      }
+      .mm-node.n9 {
+        top: 60.6%;
+        left: 5.8%;
+      }
+      .mm-node.n9 .num {
+        background: var(--rose);
+      }
+      .mm-node.n10 {
+        top: 42%;
+        left: 0.5%;
+      }
+      .mm-node.n10 .num {
+        background: var(--pink);
+        color: var(--ink);
+      }
+      .mm-node.n11 {
+        top: 23.4%;
+        left: 5.8%;
+      }
+      .mm-node.n11 .num {
+        background: var(--teal);
+      }
+      .mm-node.n12 {
+        top: 9.8%;
+        left: 20.1%;
+      }
+      .mm-node.n12 .num {
+        background: var(--yellow);
+        color: var(--ink);
+      }
+
+      .mindmap svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      @media (max-width: 820px) {
+        .mindmap {
+          min-height: auto;
+        }
+        .mindmap svg {
+          display: none;
+        }
+        .mm-center {
+          position: static;
+          transform: none;
+          margin: 0 auto 20px;
+        }
+        .mm-node {
+          position: static;
+          width: auto;
+          margin-bottom: 12px;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* TOPIC SECTIONS */
+      .topic {
+        border-radius: 28px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        padding: 36px clamp(18px, 4vw, 44px);
+        margin-bottom: 26px;
+        scroll-margin-top: 90px;
+      }
+      .topic-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 22px;
+      }
+      .topic-num {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Baloo 2", sans-serif;
+        font-weight: 800;
+        font-size: 1.15rem;
+        color: #fff;
+        flex-shrink: 0;
+      }
+      .topic-head h3 {
+        margin: 0;
+        font-size: 1.4rem;
+      }
+      .topic-head .sub {
+        font-size: 0.85rem;
+        color: var(--ink-soft);
+        margin-top: 2px;
+      }
+
+      .topic.c-blue .topic-num {
+        background: var(--blue);
+      }
+      .topic.c-teal .topic-num {
+        background: var(--teal);
+      }
+      .topic.c-yellow .topic-num {
+        background: var(--yellow);
+        color: var(--ink);
+      }
+      .topic.c-rose .topic-num {
+        background: var(--rose);
+      }
+      .topic.c-pink .topic-num {
+        background: var(--pink);
+        color: var(--ink);
+      }
+
+      .grid2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      @media (max-width: 760px) {
+        .grid2 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .info-card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 16px 18px;
+      }
+      .info-card h4 {
+        margin: 0 0 8px;
+        font-size: 0.95rem;
+        font-family: "Baloo 2", sans-serif;
+      }
+      .info-card p,
+      .info-card li {
+        font-size: 0.88rem;
+        color: var(--ink-soft);
+        line-height: 1.6;
+        margin: 0 0 6px;
+      }
+      .info-card ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 14px 0;
+      }
+      .pill {
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 5px 12px;
+        border-radius: 100px;
+        border: 1.5px solid var(--line);
+        background: #fff;
+      }
+
+      pre.code {
+        background: #2c2a3a;
+        color: #f4f1ea;
+        border-radius: 14px;
+        padding: 16px 18px;
+        font-size: 0.82rem;
+        line-height: 1.7;
+        overflow-x: auto;
+        margin: 10px 0;
+      }
+      pre.code .c-key {
+        color: var(--pink);
+      }
+      pre.code .c-str {
+        color: var(--yellow);
+      }
+      pre.code .c-fn {
+        color: var(--blue);
+      }
+      pre.code .c-com {
+        color: #8f8ba3;
+      }
+      pre.code .c-num {
+        color: var(--teal);
+      }
+
+      .example-box {
+        border-left: 4px solid var(--teal);
+        background: #effaf7;
+        border-radius: 0 14px 14px 0;
+        padding: 12px 16px;
+        margin-top: 12px;
+        font-size: 0.85rem;
+        color: #1f4d43;
+      }
+      .example-box b {
+        color: #0e352c;
+      }
+
+      table.spec {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.85rem;
+        margin: 14px 0;
+      }
+      table.spec th {
+        text-align: left;
+        padding: 9px 12px;
+        background: var(--paper);
+        font-family: "Baloo 2", sans-serif;
+        font-size: 0.82rem;
+        border-bottom: 2px solid var(--line);
+      }
+      table.spec td {
+        padding: 9px 12px;
+        border-bottom: 1px solid var(--line);
+        color: var(--ink-soft);
+        vertical-align: top;
+      }
+      table.spec tr:last-child td {
+        border-bottom: none;
+      }
+      table.spec code {
+        background: #f1ede6;
+        padding: 1px 6px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        color: var(--ink);
+      }
+
+      .method-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        gap: 14px;
+        margin-top: 16px;
+      }
+      .method-card {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px;
+        background: var(--paper);
+      }
+      .method-card .m-name {
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 600;
+        font-size: 0.88rem;
+        color: var(--rose);
+        margin-bottom: 6px;
+      }
+      .method-card p {
+        font-size: 0.82rem;
+        color: var(--ink-soft);
+        margin: 0 0 8px;
+        line-height: 1.5;
+      }
+      .method-card pre.ex,
+      .method-card code.ex {
+        display: block;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.74rem;
+        line-height: 1.6;
+        background: #2c2a3a;
+        color: #f4f1ea;
+        padding: 10px 12px;
+        border-radius: 8px;
+        margin: 0;
+        overflow-x: auto;
+        white-space: pre;
+      }
+      .method-card pre.ex .c-com {
+        color: #8f8ba3;
+      }
+
+      footer {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 50px 24px 80px;
+        text-align: center;
+      }
+      footer .foot-card {
+        background: linear-gradient(120deg, var(--blue), var(--pink));
+        border-radius: 24px;
+        padding: 44px 24px;
+        color: #2c2a3a;
+      }
+      footer h3 {
+        margin: 0 0 10px;
+        font-size: 1.5rem;
+      }
+      footer p {
+        margin: 0;
+        color: #3a3750;
+        max-width: 52ch;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .back-top {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: var(--ink);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 1.1rem;
+        box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.4);
+        z-index: 40;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s;
+      }
+      .back-top.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* CROSS-LINK SWITCH BUTTON */
+      .switch-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(120deg, var(--teal), var(--blue));
+        padding: 9px 16px;
+        border-radius: 100px;
+        flex-shrink: 0;
+        box-shadow: 0 8px 18px -8px rgba(79, 177, 157, 0.6);
+        transition: 0.2s;
+      }
+      .switch-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 22px -8px rgba(79, 177, 157, 0.7);
+      }
+      .switch-btn .arrow {
+        transition: 0.2s;
+      }
+      .switch-btn:hover .arrow {
+        transform: translateX(3px);
+      }
+
+      .hero-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        background: var(--card);
+        border: 1.5px solid var(--line);
+        border-radius: 100px;
+        padding: 8px 8px 8px 18px;
+        margin-top: 28px;
+        color: var(--ink);
+        font-size: 0.85rem;
+        font-weight: 600;
+        box-shadow: 0 10px 24px -16px rgba(44, 42, 58, 0.35);
+        transition: 0.2s;
+      }
+      .hero-switch:hover {
+        border-color: var(--teal);
+        transform: translateY(-2px);
+      }
+      .hero-switch .go {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: linear-gradient(120deg, var(--teal), var(--blue));
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+      }
+
+      /* 3-WAY LESSON SWITCHER */
+      .lesson-switcher {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        background: #fff;
+        border: 1.5px solid var(--line);
+        border-radius: 100px;
+        padding: 4px;
+        flex-shrink: 0;
+      }
+      .lesson-switcher a,
+      .lesson-switcher span {
+        font-size: 0.74rem;
+        font-weight: 700;
+        padding: 6px 12px;
+        border-radius: 100px;
+        text-decoration: none;
+        color: var(--ink-soft);
+        white-space: nowrap;
+        transition: 0.2s;
+      }
+      .lesson-switcher a:hover {
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .lesson-switcher .current {
+        background: var(--ink);
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-blob">
+      <span class="b1"></span><span class="b2"></span><span class="b3"></span
+      ><span class="b4"></span>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-inner">
+        <div class="nav-logo"><span class="dot"></span> JS Cơ Bản</div>
+        <div class="nav-links">
+          <a href="#mindmap">Bản đồ</a>
+          <a href="#bien">Biến</a>
+          <a href="#kieudl">Kiểu DL</a>
+          <a href="#toantu">Toán tử</a>
+          <a href="#dieukhien">Điều khiển</a>
+          <a href="#ham">Hàm</a>
+          <a href="#mang">Mảng</a>
+          <a href="#voonglap">Vòng lặp</a>
+          <a href="#dom">DOM</a>
+          <a href="#attrprop">Attribute/Property</a>
+          <a href="#piggame">Pig Game</a>
+          <a href="#modal">Modal Window</a>
+          <a href="#guessnumber">Guess My Number</a>
+        </div>
+        <div class="lesson-switcher">
+          <span class="current">JS</span>
+          <a href="index.html">HTML/CSS</a>
+          <a href="upweb-landing-page.html">Up Web</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div>
+        <span class="eyebrow">📘 Bài 8 · Tóm tắt & ghi nhớ</span>
+        <h1>
+          Làm quen với <span class="accent">JavaScript</span>,<br />từ biến đến
+          mảng.
+        </h1>
+        <p>
+          Một trang tổng hợp toàn bộ kiến thức nền tảng của JavaScript — biến,
+          kiểu dữ liệu, toán tử, cấu trúc điều khiển, hàm và mảng — kèm ví dụ dễ
+          hiểu để bạn ôn lại nhanh và nhớ lâu hơn.
+        </p>
+        <div class="hero-tags">
+          <span class="tag t1">let / const / var</span>
+          <span class="tag t2">Kiểu dữ liệu</span>
+          <span class="tag t3">Toán tử</span>
+          <span class="tag t4">if / switch</span>
+          <span class="tag t5">Hàm & Mảng</span>
+        </div>
+        <a href="index.html" class="hero-switch">
+          <span class="go">→</span> Đã nắm JS? Ôn tiếp bài HTML &amp; CSS
+        </a>
+      </div>
+      <div class="hero-code">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <pre
+          style="margin: 0; white-space: pre-wrap"
+        ><span class="c-com">// Một dòng code, đủ mọi khái niệm</span>
+<span class="c-key">const</span> user = { name: <span class="c-str">"Thanh"</span>, age: <span class="c-fn">17</span> };
+
+<span class="c-key">const</span> greet = (u) => {
+  <span class="c-key">return</span> u.age >= <span class="c-fn">18</span>
+    ? <span class="c-str">`Chào ${u.name}, bạn đã đủ 18!`</span>
+    : <span class="c-str">`${u.name} còn nhỏ tuổi 🙂`</span>;
+};
+
+console.<span class="c-fn">log</span>(greet(user));
+<span class="c-com">// → "Thanh còn nhỏ tuổi 🙂"</span></pre>
+      </div>
+    </div>
+
+    <section id="mindmap">
+      <div class="section-head">
+        <span class="kicker">Mind map</span>
+        <h2>Toàn cảnh bài học trong 1 bức tranh</h2>
+        <p>
+          12 nhánh kiến thức chính — bấm vào từng nhánh để đọc chi tiết bên
+          dưới.
+        </p>
+      </div>
+
+      <div class="mindmap-wrap">
+        <div class="mindmap">
+          <svg viewBox="0 0 920 940" preserveAspectRatio="none">
+            <line
+              x1="460"
+              y1="450"
+              x2="460"
+              y2="100"
+              stroke="#9ac5e5"
+              stroke-width="2.5"
+              stroke-dasharray="5 5"
+            />
+            <line
+              x1="460"
+              y1="450"
+              x2="640"
+              y2="146.9"
+              stroke="#4fb19d"
+              stroke-width="2.5"
+              stroke-dasharray="5 5"
+            />
+            <line
+              x1="460"
+              y1="450"
+              x2="771.8"
+              y2="275"
+              stroke="#edce7a"
+              stroke-width="2.5"
+              stroke-dasharray="5 5"
+            />
+            <line
+              x1="460"
+              y1="450"
+              x2="820"
+              y2="450"
+              stroke="#c98c9a"
+              stroke-width="2.5"
+              stroke-dasharray="5 5"
+            />
+            <line
+              x1="460"
+              y1="450"
+              x2="771.8"
+              y2="625"
+              stroke="#e5c6c3"
+              stroke-width="2.5"
+              stroke-dasharray="5 5"
+            />
+            <line
+              x1="460"
+              y1="450"
+              x2="640"
+              y2="753.1"
+              stroke="#9ac5e5"
+              stroke-width="2.5"
+              stroke-dasharray="5 5"
+            />
+            <line
+              x1="460"
+              y1="450"
+              x2="460"
+              y2="800"
+              stroke="#4fb19d"
+              stroke-width="2.5"
+              stroke-dasharray="5 5"
+            />
+            <line
+              x1="460"
+              y1="450"
+              x2="280"
+              y2="753.1"
+              stroke="#edce7a"
+              stroke-width="2.5"
+              stroke-dasharray="5 5"
+            />
+            <line
+              x1="460"
+              y1="450"
+              x2="148.2"
+              y2="625"
+              stroke="#c98c9a"
+              stroke-width="2.5"
+              stroke-dasharray="5 5"
+            />
+            <line
+              x1="460"
+              y1="450"
+              x2="100"
+              y2="450"
+              stroke="#e5c6c3"
+              stroke-width="2.5"
+              stroke-dasharray="5 5"
+            />
+            <line
+              x1="460"
+              y1="450"
+              x2="148.2"
+              y2="275"
+              stroke="#4fb19d"
+              stroke-width="2.5"
+              stroke-dasharray="5 5"
+            />
+            <line
+              x1="460"
+              y1="450"
+              x2="280"
+              y2="146.9"
+              stroke="#edce7a"
+              stroke-width="2.5"
+              stroke-dasharray="5 5"
+            />
+          </svg>
+
+          <div class="mm-center">
+            JavaScript<br /><span
+              style="font-weight: 400; font-size: 0.72rem; opacity: 0.9"
+              >Ngôn ngữ lập trình bậc cao</span
+            >
+          </div>
+
+          <a href="#bien" class="mm-node n1">
+            <span class="num">1</span>
+            <div class="title">Biến</div>
+            <div class="desc">let, const, var — nơi lưu trữ giá trị</div>
+          </a>
+          <a href="#kieudl" class="mm-node n2">
+            <span class="num">2</span>
+            <div class="title">Kiểu dữ liệu</div>
+            <div class="desc">7 kiểu nguyên thủy + chuyển đổi kiểu</div>
+          </a>
+          <a href="#toantu" class="mm-node n3">
+            <span class="num">3</span>
+            <div class="title">Toán tử</div>
+            <div class="desc">Số học, so sánh, logic, gán, 3 ngôi</div>
+          </a>
+          <a href="#dieukhien" class="mm-node n4">
+            <span class="num">4</span>
+            <div class="title">Cấu trúc điều khiển</div>
+            <div class="desc">if...else, switch, toán tử 3 ngôi</div>
+          </a>
+          <a href="#ham" class="mm-node n5">
+            <span class="num">5</span>
+            <div class="title">Hàm</div>
+            <div class="desc">Declaration, expression, arrow function</div>
+          </a>
+          <a href="#mang" class="mm-node n6">
+            <span class="num">6</span>
+            <div class="title">Mảng</div>
+            <div class="desc">Khai báo, truy cập, các method phổ biến</div>
+          </a>
+          <a href="#voonglap" class="mm-node n7">
+            <span class="num">7</span>
+            <div class="title">Vòng lặp</div>
+            <div class="desc">for, while, do...while, break/continue</div>
+          </a>
+          <a href="#dom" class="mm-node n8">
+            <span class="num">8</span>
+            <div class="title">DOM</div>
+            <div class="desc">Chọn, đọc/sửa, tạo/xoá phần tử, sự kiện</div>
+          </a>
+          <a href="#attrprop" class="mm-node n9">
+            <span class="num">9</span>
+            <div class="title">Attribute vs Property</div>
+            <div class="desc">Phân biệt 2 khái niệm hay bị nhầm</div>
+          </a>
+          <a href="#piggame" class="mm-node n10">
+            <span class="num">10</span>
+            <div class="title">🎲 Dự án: Pig Game</div>
+            <div class="desc">Thực hành DOM + state + event listener</div>
+          </a>
+          <a href="#modal" class="mm-node n11">
+            <span class="num">11</span>
+            <div class="title">🪟 Dự án: Modal Window</div>
+            <div class="desc">NodeList loop, overlay, phím Escape</div>
+          </a>
+          <a href="#guessnumber" class="mm-node n12">
+            <span class="num">12</span>
+            <div class="title">🔢 Dự án: Guess My Number</div>
+            <div class="desc">State, kiểm tra input, style qua JS</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="chi-tiet" style="padding-top: 10px">
+      <!-- 1. BIẾN -->
+      <div class="topic c-blue" id="bien">
+        <div class="topic-head">
+          <div class="topic-num">1</div>
+          <div>
+            <h3>Biến (Variables)</h3>
+            <div class="sub">
+              Nơi lưu trữ giá trị — như một chiếc hộp có dán nhãn
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="info-card">
+            <h4>🔵 let</h4>
+            <p>
+              Khai báo biến <b>có thể thay đổi giá trị</b> sau này. Còn gọi là
+              mutable variable. Là block-scope (chỉ tồn tại trong khối {} chứa
+              nó).
+            </p>
+          </div>
+          <div class="info-card">
+            <h4>🟢 const</h4>
+            <p>
+              Khai báo biến <b>chỉ gán 1 lần</b>, không thể gán lại. Còn gọi là
+              immutable variable. Nên dùng const mặc định, chỉ chuyển sang let
+              khi chắc chắn giá trị sẽ đổi.
+            </p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <b>Ví dụ dễ hiểu:</b> hãy tưởng tượng <code>let</code> là một chiếc ly
+          có thể đổ nước khác vào, còn <code>const</code> là một chiếc ly đã
+          được keo dán chặt xuống bàn — không thể thay ly khác, nhưng nếu bên
+          trong là một chiếc hộp (object/array) thì bạn vẫn có thể mở hộp ra và
+          đổi đồ bên trong.
+        </div>
+
+        <pre
+          class="code"
+        ><span class="c-key">let</span> age = <span class="c-num">25</span>;
+age = <span class="c-num">26</span>;              <span class="c-com">// ✅ OK vì dùng let</span>
+
+<span class="c-key">const</span> PI = <span class="c-num">3.14</span>;
+PI = <span class="c-num">3.14159</span>;          <span class="c-com">// ❌ Lỗi! const không gán lại được</span>
+
+<span class="c-key">const</span> dog = { name: <span class="c-str">"Spot"</span> };
+dog.name = <span class="c-str">"Rex"</span>;       <span class="c-com">// ✅ OK — sửa thuộc tính bên trong object vẫn được</span></pre>
+
+        <div class="pill-row">
+          <span class="pill"
+            >⚠️ var — từ khóa cũ, tránh dùng (function-scope, dễ gây lỗi)</span
+          >
+        </div>
+
+        <table class="spec">
+          <tr>
+            <th>Quy tắc đặt tên biến</th>
+            <th>Ví dụ</th>
+          </tr>
+          <tr>
+            <td>
+              Chỉ dùng chữ, số, <code>_</code>, <code>$</code> — không bắt đầu
+              bằng số
+            </td>
+            <td><code>myAge</code>, <code>_temp</code></td>
+          </tr>
+          <tr>
+            <td>Phân biệt chữ hoa/thường</td>
+            <td><code>myName</code> ≠ <code>MyName</code></td>
+          </tr>
+          <tr>
+            <td>Không dùng từ khóa của JS</td>
+            <td>
+              ❌ <code>let</code>, <code>function</code>, <code>for</code>
+            </td>
+          </tr>
+          <tr>
+            <td>Quy tắc lowerCamelCase</td>
+            <td><code>myFirstName</code></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- 2. KIEU DU LIEU -->
+      <div class="topic c-teal" id="kieudl">
+        <div class="topic-head">
+          <div class="topic-num">2</div>
+          <div>
+            <h3>Kiểu dữ liệu &amp; Chuyển đổi kiểu</h3>
+            <div class="sub">
+              7 kiểu nguyên thủy, Dynamic typing và cách JS quy đổi qua lại
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="info-card">
+            <h4>7 kiểu dữ liệu nguyên thủy (Primitive)</h4>
+            <ul>
+              <li><code>number</code> — số nguyên, thập phân</li>
+              <li><code>string</code> — chuỗi ký tự, đặt trong " " hoặc ' '</li>
+              <li><code>boolean</code> — true / false</li>
+              <li>
+                <code>undefined</code> — biến đã khai báo nhưng chưa gán giá trị
+              </li>
+              <li><code>null</code> — không có giá trị (cố ý gán)</li>
+              <li><code>symbol</code> — ký hiệu duy nhất</li>
+              <li><code>bigint</code> — số nguyên rất lớn</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h4>Object &amp; Dynamic typing</h4>
+            <p>
+              <code>object</code> và <code>array</code> là kiểu tham chiếu
+              (reference), dùng để lưu dữ liệu phức tạp.
+            </p>
+            <p>
+              JS là <b>ngôn ngữ định kiểu động</b> — bạn không cần khai báo kiểu
+              dữ liệu, JS tự nhận diện dựa vào giá trị được gán. Dùng
+              <code>typeof</code> để kiểm tra kiểu.
+            </p>
+          </div>
+        </div>
+
+        <pre
+          class="code"
+        ><span class="c-key">let</span> x = <span class="c-num">5</span>;
+console.<span class="c-fn">log</span>(<span class="c-key">typeof</span> x);   <span class="c-com">// "number"</span>
+
+x = <span class="c-str">"hello"</span>;
+console.<span class="c-fn">log</span>(<span class="c-key">typeof</span> x);   <span class="c-com">// "string" — cùng 1 biến, đổi kiểu thoải mái!</span></pre>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 26px"
+        >
+          Chuyển đổi kiểu (Type Conversion) — chủ động
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Bạn tự yêu cầu JS đổi kiểu bằng <code>String()</code>,
+          <code>Number()</code>, <code>Boolean()</code>.
+        </p>
+
+        <table class="spec">
+          <tr>
+            <th>Chuyển đổi</th>
+            <th>Cú pháp</th>
+            <th>Ví dụ</th>
+          </tr>
+          <tr>
+            <td>Số → chuỗi</td>
+            <td><code>String(n)</code></td>
+            <td><code>String(19) // "19"</code></td>
+          </tr>
+          <tr>
+            <td>Boolean → chuỗi</td>
+            <td><code>String(bool)</code></td>
+            <td><code>String(true) // "true"</code></td>
+          </tr>
+          <tr>
+            <td>Chuỗi → số</td>
+            <td><code>Number(s)</code></td>
+            <td><code>Number("18") // 18</code></td>
+          </tr>
+          <tr>
+            <td>Chuỗi → boolean</td>
+            <td><code>Boolean(s)</code></td>
+            <td><code>Boolean("") // false</code></td>
+          </tr>
+          <tr>
+            <td>Mảng → chuỗi</td>
+            <td><code>String(arr)</code></td>
+            <td><code>String([1,2]) // "1,2"</code></td>
+          </tr>
+        </table>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 22px"
+        >
+          Ép kiểu (Type Coercion) — JS tự làm ngầm
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Xảy ra khi một phép toán xử lý 2 giá trị khác kiểu — JS ngầm chuyển
+          đổi để tính được.
+        </p>
+        <pre
+          class="code"
+        >console.<span class="c-fn">log</span>(<span class="c-str">"19"</span> - <span class="c-str">"13"</span> + <span class="c-str">"17"</span>);
+<span class="c-com">// "19"-"13" → ép về số → 6, sau đó 6 + "17" → nối chuỗi → "617"</span>
+
+console.<span class="c-fn">log</span>(<span class="c-num">5</span> + <span class="c-str">"5"</span>);   <span class="c-com">// "55" (có string → ưu tiên nối chuỗi)</span>
+console.<span class="c-fn">log</span>(<span class="c-num">5</span> - <span class="c-str">"2"</span>);   <span class="c-com">// 3   (- * / luôn ép về number)</span></pre>
+
+        <div class="example-box">
+          <b>Ghi nhớ nhanh:</b> phép <code>+</code> ưu tiên nối chuỗi nếu có ít
+          nhất 1 bên là string. Còn <code>- * /</code> luôn ép cả hai về number.
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 22px"
+        >
+          Giá trị Falsy &amp; Truthy
+        </h4>
+        <div class="grid2">
+          <div class="info-card">
+            <h4>5 giá trị Falsy (coi như false)</h4>
+            <p>
+              <code>0</code>, <code>""</code> (chuỗi rỗng), <code>null</code>,
+              <code>undefined</code>, <code>NaN</code>
+            </p>
+          </div>
+          <div class="info-card">
+            <h4>Truthy</h4>
+            <p>
+              Tất cả giá trị còn lại — kể cả <code>"0"</code> (chuỗi có nội
+              dung) hay mảng rỗng <code>[]</code> đều là truthy!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. TOAN TU -->
+      <div class="topic c-yellow" id="toantu">
+        <div class="topic-head">
+          <div class="topic-num">3</div>
+          <div>
+            <h3>Toán tử (Operators)</h3>
+            <div class="sub">
+              Công cụ so sánh, gán giá trị và thực hiện phép toán
+            </div>
+          </div>
+        </div>
+
+        <table class="spec">
+          <tr>
+            <th>Nhóm</th>
+            <th>Toán tử</th>
+            <th>Ý nghĩa</th>
+          </tr>
+          <tr>
+            <td>Số học</td>
+            <td><code>+ - * / % **</code></td>
+            <td>Cộng, trừ, nhân, chia, chia lấy dư, lũy thừa</td>
+          </tr>
+          <tr>
+            <td>Gán</td>
+            <td><code>= += -= *= /=</code></td>
+            <td><code>a += b</code> tương đương <code>a = a + b</code></td>
+          </tr>
+          <tr>
+            <td>So sánh lỏng</td>
+            <td><code>== !=</code></td>
+            <td>So sánh có ép kiểu — <code>4 == "4"</code> → true</td>
+          </tr>
+          <tr>
+            <td>So sánh chặt</td>
+            <td><code>=== !==</code></td>
+            <td>So sánh không ép kiểu — nên dùng loại này!</td>
+          </tr>
+          <tr>
+            <td>Logic</td>
+            <td><code>&& || !</code></td>
+            <td>VÀ, HOẶC, PHỦ ĐỊNH</td>
+          </tr>
+          <tr>
+            <td>Ba ngôi</td>
+            <td><code>? :</code></td>
+            <td>Rút gọn của if...else trên 1 dòng</td>
+          </tr>
+          <tr>
+            <td>Tăng/giảm</td>
+            <td><code>++ --</code></td>
+            <td>Tăng/giảm 1 đơn vị</td>
+          </tr>
+        </table>
+
+        <div class="grid2">
+          <div class="info-card">
+            <h4>Toán tử logic</h4>
+            <table class="spec">
+              <tr>
+                <td><code>&&</code> AND</td>
+                <td>true khi <b>tất cả</b> đều true</td>
+              </tr>
+              <tr>
+                <td><code>||</code> OR</td>
+                <td>true khi <b>ít nhất 1</b> giá trị true</td>
+              </tr>
+              <tr>
+                <td><code>!</code> NOT</td>
+                <td>Đảo ngược giá trị boolean</td>
+              </tr>
+            </table>
+          </div>
+          <div class="info-card">
+            <h4>Ví dụ nhanh</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            >5 % 2        <span class="c-com">// 1 (dư 1)</span>
+2 ** 3       <span class="c-com">// 8 (lũy thừa)</span>
+4 === "4"    <span class="c-com">// false (khác kiểu)</span>
+4 == "4"     <span class="c-com">// true (có ép kiểu)</span>
+true && false <span class="c-com">// false</span>
+true || false <span class="c-com">// true</span></pre>
+          </div>
+        </div>
+
+        <h4 style="font-family: &quot;Baloo 2&quot;, sans-serif">
+          Toán tử 3 ngôi (Ternary)
+        </h4>
+        <pre
+          class="code"
+        ><span class="c-key">const</span> age = <span class="c-num">20</span>;
+<span class="c-key">const</span> drink = age >= <span class="c-num">18</span> ? <span class="c-str">"🍷 wine"</span> : <span class="c-str">"🥤 water"</span>;
+console.<span class="c-fn">log</span>(drink);   <span class="c-com">// "🍷 wine"</span></pre>
+        <div class="example-box">
+          <b>Ví dụ dễ hiểu:</b> toán tử 3 ngôi giống một câu hỏi Yes/No siêu
+          ngắn gọn: "điều kiện đúng thì lấy giá trị A, sai thì lấy giá trị B" —
+          viết gọn trong 1 dòng thay vì cả khối if...else.
+        </div>
+      </div>
+
+      <!-- 4. CAU TRUC DIEU KHIEN -->
+      <div class="topic c-rose" id="dieukhien">
+        <div class="topic-head">
+          <div class="topic-num">4</div>
+          <div>
+            <h3>Cấu trúc điều khiển</h3>
+            <div class="sub">
+              if...else, switch...case — để chương trình "ra quyết định"
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="info-card">
+            <h4>if...else</h4>
+            <p>
+              Thực thi khối lệnh dựa trên kết quả đúng/sai của một biểu thức.
+            </p>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">if</span> (age >= <span class="c-num">18</span>) {
+  console.<span class="c-fn">log</span>(<span class="c-str">"Đủ tuổi"</span>);
+} <span class="c-key">else</span> {
+  console.<span class="c-fn">log</span>(<span class="c-str">"Chưa đủ tuổi"</span>);
+}</pre>
+          </div>
+          <div class="info-card">
+            <h4>if...else if...else</h4>
+            <p>
+              Khi có <b>nhiều hơn 2 trường hợp</b>, dùng <code>else if</code> để
+              kiểm tra thêm điều kiện. JS xét lần lượt từ trên xuống, gặp điều
+              kiện nào đúng đầu tiên thì chạy khối đó rồi dừng lại — bỏ qua toàn
+              bộ các điều kiện còn lại.
+            </p>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">if</span> (score >= <span class="c-num">9</span>) {
+  console.<span class="c-fn">log</span>(<span class="c-str">"Xuất sắc"</span>);
+} <span class="c-key">else if</span> (score >= <span class="c-num">7</span>) {
+  console.<span class="c-fn">log</span>(<span class="c-str">"Giỏi"</span>);
+} <span class="c-key">else if</span> (score >= <span class="c-num">5</span>) {
+  console.<span class="c-fn">log</span>(<span class="c-str">"Trung bình"</span>);
+} <span class="c-key">else</span> {
+  console.<span class="c-fn">log</span>(<span class="c-str">"Cần cố gắng"</span>);
+}
+<span class="c-com">// score = 8 → in ra "Giỏi", các nhánh sau không được xét nữa</span></pre>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <b>Ví dụ dễ hiểu — else if:</b> giống như một trạm kiểm tra vé xem
+          phim theo độ tuổi: nhân viên hỏi lần lượt "trên 18 tuổi không?" → nếu
+          không mới hỏi tiếp "trên 13 tuổi không?" → cứ thế cho đến khi tìm được
+          đúng mức vé, tìm thấy là dừng lại ngay, không hỏi thêm câu nào nữa.
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 26px"
+        >
+          switch...case
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Thay thế chuỗi <code>if/else if</code> dài khi so sánh
+          <b>1 biến duy nhất</b> với nhiều giá trị cụ thể.
+          <b>Đừng quên <code>break</code></b> — nếu quên, code sẽ "rơi" xuống
+          case tiếp theo dù đã khớp đúng case đầu (gọi là hiện tượng
+          <i>fall-through</i>)!
+        </p>
+
+        <pre
+          class="code"
+        ><span class="c-key">const</span> day = <span class="c-str">"Tue"</span>;
+
+<span class="c-key">switch</span> (day) {
+  <span class="c-key">case</span> <span class="c-str">"Mon"</span>:
+    console.<span class="c-fn">log</span>(<span class="c-str">"Thứ Hai — họp đầu tuần"</span>);
+    <span class="c-key">break</span>;
+  <span class="c-key">case</span> <span class="c-str">"Tue"</span>:
+  <span class="c-key">case</span> <span class="c-str">"Wed"</span>:
+  <span class="c-key">case</span> <span class="c-str">"Thu"</span>:
+    console.<span class="c-fn">log</span>(<span class="c-str">"Ngày làm việc bình thường"</span>);
+    <span class="c-key">break</span>;
+  <span class="c-key">case</span> <span class="c-str">"Fri"</span>:
+    console.<span class="c-fn">log</span>(<span class="c-str">"Thứ Sáu — sắp được nghỉ!"</span>);
+    <span class="c-key">break</span>;
+  <span class="c-key">case</span> <span class="c-str">"Sat"</span>:
+  <span class="c-key">case</span> <span class="c-str">"Sun"</span>:
+    console.<span class="c-fn">log</span>(<span class="c-str">"Cuối tuần 🎉"</span>);
+    <span class="c-key">break</span>;
+  <span class="c-key">default</span>:
+    console.<span class="c-fn">log</span>(<span class="c-str">"Không phải ngày hợp lệ"</span>);
+}
+<span class="c-com">// day = "Tue" → in ra "Ngày làm việc bình thường"
+// vì "Tue" khớp case "Tue", không có break riêng nên "rơi" tiếp
+// xuống dùng chung code của "Wed"/"Thu", rồi mới gặp break và dừng lại</span></pre>
+
+        <div class="example-box">
+          <b>Ví dụ dễ hiểu:</b> if/else giống như hỏi "có phải không?" nhiều lần
+          liên tiếp theo từng điều kiện khác nhau, còn switch giống như một bảng
+          chọn món trong quán ăn — bạn chỉ ra 1 "biến số" (món) và mỗi "case" là
+          1 lựa chọn khớp với giá trị của nó. Nhiều case xếp liền nhau không có
+          <code>break</code> ở giữa (như "Tue"/"Wed"/"Thu" ở trên) nghĩa là "các
+          ngày này xử lý giống hệt nhau".
+        </div>
+
+        <div class="pill-row">
+          <span class="pill"
+            >💡 Nên chuyển if/else → switch khi chỉ so sánh 1 biến với nhiều giá
+            trị cụ thể</span
+          >
+        </div>
+      </div>
+
+      <!-- 5. HAM -->
+      <div class="topic c-pink" id="ham">
+        <div class="topic-head">
+          <div class="topic-num">5</div>
+          <div>
+            <h3>Hàm (Functions)</h3>
+            <div class="sub">
+              Đoạn code được đặt tên để tái sử dụng nhiều lần — nguyên tắc DRY
+            </div>
+          </div>
+        </div>
+
+        <p style="color: var(--ink-soft); font-size: 0.92rem">
+          Hàm gồm: tên hàm, tham số (parameters), thân hàm, và có thể trả về giá
+          trị bằng <code>return</code>. Có 3 cách khai báo hàm chính:
+        </p>
+
+        <div class="grid2">
+          <div class="info-card">
+            <h4>1️⃣ Function Declaration</h4>
+            <p>
+              Có thể gọi hàm <b>trước cả khi</b> nó được khai báo (nhờ
+              hoisting).
+            </p>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">function</span> calcAge(birthYear) {
+  <span class="c-key">return</span> <span class="c-num">2026</span> - birthYear;
+}
+calcAge(<span class="c-num">2000</span>); <span class="c-com">// 26</span></pre>
+          </div>
+          <div class="info-card">
+            <h4>2️⃣ Function Expression</h4>
+            <p>
+              Hàm được gán vào 1 biến — chỉ gọi được <b>sau khi</b> khai báo.
+            </p>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">const</span> calcAge = <span class="c-key">function</span>(birthYear) {
+  <span class="c-key">return</span> <span class="c-num">2026</span> - birthYear;
+};</pre>
+          </div>
+        </div>
+
+        <div class="info-card" style="margin-top: 16px">
+          <h4>3️⃣ Arrow Function — cú pháp ngắn gọn với <code>=&gt;</code></h4>
+          <p>
+            Nếu thân hàm chỉ 1 dòng: không cần <code>{}</code> và
+            <code>return</code>. Không có từ khóa <code>this</code> riêng.
+          </p>
+          <pre
+            class="code"
+            style="margin: 0"
+          ><span class="c-key">const</span> calcAge = birthYear => <span class="c-num">2026</span> - birthYear;
+calcAge(<span class="c-num">2000</span>);   <span class="c-com">// 26 — gọn hơn hẳn!</span>
+
+<span class="c-com">// nhiều dòng thì cần {} và return</span>
+<span class="c-key">const</span> greet = (name, age) => {
+  <span class="c-key">const</span> status = age >= <span class="c-num">18</span> ? <span class="c-str">"người lớn"</span> : <span class="c-str">"trẻ em"</span>;
+  <span class="c-key">return</span> <span class="c-str">`${name} là ${status}`</span>;
+};</pre>
+        </div>
+
+        <div class="example-box">
+          <b>Ví dụ dễ hiểu:</b> hàm giống một "cái máy xay sinh tố" — bạn bỏ
+          nguyên liệu (tham số) vào, nó xử lý theo công thức có sẵn (thân hàm),
+          rồi đưa ra ly sinh tố (giá trị return). Mỗi lần cần sinh tố, chỉ việc
+          gọi máy chạy lại, không cần làm lại từ đầu.
+        </div>
+
+        <p style="color: var(--ink-soft); font-size: 0.85rem; margin-top: 16px">
+          💡 <b>Nguyên tắc DRY</b> (Don't Repeat Yourself): dùng hàm để tránh
+          viết đi viết lại cùng một đoạn code.
+        </p>
+      </div>
+
+      <!-- 6. MANG -->
+      <div class="topic c-blue" id="mang">
+        <div class="topic-head">
+          <div class="topic-num">6</div>
+          <div>
+            <h3>Mảng (Array)</h3>
+            <div class="sub">
+              Lưu nhiều giá trị trong 1 biến duy nhất — mỗi phần tử có 1 chỉ mục
+              (index)
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="info-card">
+            <h4>Khai báo</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">const</span> fruits = [<span class="c-str">"Apple"</span>, <span class="c-str">"Banana"</span>];
+<span class="c-com">// hoặc</span>
+<span class="c-key">const</span> fruits = <span class="c-key">new</span> Array(<span class="c-str">"Apple"</span>, <span class="c-str">"Banana"</span>);</pre>
+          </div>
+          <div class="info-card">
+            <h4>Truy cập phần tử</h4>
+            <p>
+              Chỉ số bắt đầu từ <code>0</code>. Muốn lấy phần tử thứ k → dùng
+              <code>array[k-1]</code>.
+            </p>
+            <pre
+              class="code"
+              style="margin: 0"
+            >fruits[<span class="c-num">0</span>];       <span class="c-com">// "Apple"</span>
+fruits.length;  <span class="c-com">// 2 (số phần tử)</span></pre>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <b>Ví dụ dễ hiểu:</b> mảng giống một dãy ô tủ đựng đồ được đánh số từ
+          0. Muốn lấy đồ ở ô số 3, bạn không gõ "ô số 3" mà gõ
+          <code>tủ[2]</code> — vì đếm bắt đầu từ 0!
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          Các phương thức (method) thường dùng
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.88rem; margin-top: -6px">
+          Tất cả ví dụ dưới đây đều dùng chung mảng gốc:
+          <code>const fruits = ["Apple", "Banana", "Orange"];</code>
+        </p>
+
+        <div class="method-grid">
+          <div class="method-card">
+            <div class="m-name">.push()</div>
+            <p>
+              Thêm 1 phần tử vào <b>cuối</b> mảng. Trả về <b>độ dài mới</b> của
+              mảng.
+            </p>
+            <pre class="ex">fruits.push("Mango");
+console.log(fruits);
+<span class="c-com">// ["Apple","Banana","Orange","Mango"]</span></pre>
+          </div>
+          <div class="method-card">
+            <div class="m-name">.unshift()</div>
+            <p>
+              Thêm 1 phần tử vào <b>đầu</b> mảng, các phần tử khác dịch sang
+              phải.
+            </p>
+            <pre class="ex">fruits.unshift("Grape");
+console.log(fruits);
+<span class="c-com">// ["Grape","Apple","Banana","Orange"]</span></pre>
+          </div>
+          <div class="method-card">
+            <div class="m-name">.pop()</div>
+            <p>
+              Xóa phần tử <b>cuối</b> mảng và <b>trả về chính phần tử đó</b>.
+            </p>
+            <pre class="ex">const last = fruits.pop();
+console.log(last);      <span class="c-com">// "Orange"</span>
+console.log(fruits);    <span class="c-com">// ["Apple","Banana"]</span></pre>
+          </div>
+          <div class="method-card">
+            <div class="m-name">.shift()</div>
+            <p>Xóa phần tử <b>đầu</b> mảng và trả về chính phần tử đó.</p>
+            <pre class="ex">const first = fruits.shift();
+console.log(first);     <span class="c-com">// "Apple"</span>
+console.log(fruits);    <span class="c-com">// ["Banana","Orange"]</span></pre>
+          </div>
+          <div class="method-card">
+            <div class="m-name">.indexOf()</div>
+            <p>
+              Trả về <b>vị trí (index)</b> của phần tử đầu tiên khớp — không
+              phải giá trị true/false. Trả <code>-1</code> nếu không tìm thấy.
+            </p>
+            <pre
+              class="ex"
+            >fruits.indexOf("Banana");  <span class="c-com">// 1</span>
+fruits.indexOf("Mango");   <span class="c-com">// -1 (không có)</span></pre>
+          </div>
+          <div class="method-card">
+            <div class="m-name">.includes()</div>
+            <p>
+              Chỉ trả về <b>true/false</b> — có tồn tại hay không, không cho
+              biết ở vị trí nào. So sánh bằng <code>===</code> (strict equal).
+            </p>
+            <pre
+              class="ex"
+            >fruits.includes("Banana"); <span class="c-com">// true</span>
+fruits.includes("banana"); <span class="c-com">// false (phân biệt hoa/thường!)</span></pre>
+          </div>
+          <div class="method-card">
+            <div class="m-name">.map()</div>
+            <p>
+              Tạo <b>mảng mới cùng độ dài</b>, mỗi phần tử được biến đổi theo
+              hàm truyền vào.
+            </p>
+            <pre class="ex">const numbers = [1, 2, 3, 4];
+const doubled = numbers.map(n => n * 2);
+console.log(doubled);   <span class="c-com">// [2,4,6,8]</span></pre>
+          </div>
+          <div class="method-card">
+            <div class="m-name">.filter()</div>
+            <p>
+              Trả về mảng mới <b>chỉ chứa</b> các phần tử thỏa điều kiện (độ dài
+              có thể ngắn hơn).
+            </p>
+            <pre class="ex">const numbers = [1,2,3,4,5,6];
+const even = numbers.filter(n => n % 2 === 0);
+console.log(even);      <span class="c-com">// [2,4,6]</span></pre>
+          </div>
+          <div class="method-card">
+            <div class="m-name">.reduce()</div>
+            <p>
+              Gộp cả mảng thành <b>1 giá trị duy nhất</b> (tổng, trung bình,
+              chuỗi ghép...). Tham số thứ 2 là giá trị khởi đầu.
+            </p>
+            <pre class="ex">const numbers = [1,2,3,4];
+const sum = numbers.reduce((total,n) => total+n, 0);
+console.log(sum);       <span class="c-com">// 10</span></pre>
+          </div>
+          <div class="method-card">
+            <div class="m-name">.find()</div>
+            <p>
+              Trả về <b>phần tử đầu tiên</b> thỏa điều kiện (không phải mảng).
+              <code>undefined</code> nếu không có.
+            </p>
+            <pre class="ex">const numbers = [5,12,8,20];
+const found = numbers.find(n => n > 10);
+console.log(found);     <span class="c-com">// 12 (số đầu tiên > 10)</span></pre>
+          </div>
+          <div class="method-card">
+            <div class="m-name">.forEach()</div>
+            <p>
+              Duyệt qua từng phần tử để thực hiện hành động —
+              <b>không tạo mảng mới</b>, không có return hữu ích.
+            </p>
+            <pre class="ex">fruits.forEach(fruit => console.log(fruit));
+<span class="c-com">// "Apple" → "Banana" → "Orange" (in từng dòng)</span></pre>
+          </div>
+          <div class="method-card">
+            <div class="m-name">.length</div>
+            <p>
+              Thuộc tính (không phải hàm, không có dấu ngoặc) trả về số phần tử.
+            </p>
+            <pre
+              class="ex"
+            >console.log(fruits.length);  <span class="c-com">// 3</span></pre>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <b>Ví dụ dễ hiểu — map vs filter vs find:</b> nếu mảng là 1 rổ trái
+          cây, <code>filter</code> giống việc bạn <i>chọn ra</i> những quả chín
+          (giữ nguyên số lượng ít hơn), <code>map</code> giống việc bạn
+          <i>ép nước</i> từng quả — số lượng ly nước bằng đúng số quả ban đầu
+          nhưng mỗi phần tử đã "biến hình", còn <code>find</code> giống việc bạn
+          chỉ cần <i>lấy ra đúng 1 quả</i> đầu tiên nhìn thấy chín — tìm được là
+          dừng, không cần cả rổ.
+        </div>
+
+        <div class="grid2" style="margin-top: 18px">
+          <div class="info-card">
+            <h4>⚠️ Lưu ý về indexOf &amp; includes</h4>
+            <ul>
+              <li>
+                <code>indexOf</code> quan tâm đến <b>vị trí</b> (trả về số) →
+                dùng khi cần biết phần tử nằm ở đâu.
+              </li>
+              <li>
+                <code>includes</code> chỉ quan tâm <b>có hay không</b> (trả về
+                boolean) → dùng khi chỉ cần kiểm tra sự tồn tại, không cần vị
+                trí.
+              </li>
+              <li>
+                <code>includes</code> dùng so sánh chặt <code>===</code>, nên
+                <code>"Apple"</code> và <code>"apple"</code> được coi là 2 giá
+                trị khác nhau.
+              </li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h4>⚠️ Lưu ý chung về mảng</h4>
+            <ul>
+              <li>
+                <code>map()</code>, <code>filter()</code>,
+                <code>reduce()</code>, <code>forEach()</code> đều
+                <b>bắt buộc tham số truyền vào là 1 hàm</b> (callback) — dùng
+                arrow function <code>() => {}</code> hoặc
+                <code>function(){}</code>, không được truyền thẳng 1 biểu thức
+                toán học.
+              </li>
+              <li>
+                Mảng <b>không phải</b> là kiểu dữ liệu nguyên thủy (primitive) —
+                nó là kiểu tham chiếu (object).
+              </li>
+              <li>
+                Khai báo mảng bằng <code>const</code> vẫn có thể
+                <code>push</code>/<code>pop</code>/sửa phần tử bên trong —
+                <b>chỉ không thể gán lại cả biến</b> bằng một mảng khác.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <pre
+          class="code"
+          style="margin-top: 16px"
+        ><span class="c-key">const</span> nums = [<span class="c-num">1</span>, <span class="c-num">2</span>, <span class="c-num">3</span>];
+nums.push(<span class="c-num">4</span>);        <span class="c-com">// ✅ OK — [1,2,3,4], vẫn là mảng đó, chỉ đổi nội dung</span>
+nums = [<span class="c-num">9</span>, <span class="c-num">9</span>];   <span class="c-com">// ❌ Lỗi! không được gán lại cả biến const</span></pre>
+      </div>
+
+      <!-- 7. VONG LAP -->
+      <div class="topic c-teal" id="voonglap">
+        <div class="topic-head">
+          <div class="topic-num">7</div>
+          <div>
+            <h3>Vòng lặp (Loops)</h3>
+            <div class="sub">
+              Lặp lại code tự động, thay vì chép tay nhiều lần
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <b>Vì sao cần vòng lặp?</b> Không dùng vòng lặp:
+          <code>console.log(1); console.log(2); console.log(3);</code> — muốn
+          lặp 100 lần thì chép tay 100 dòng. Dùng vòng lặp <code>for</code>: chỉ
+          3 dòng code, lặp bao nhiêu lần cũng được.
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 22px"
+        >
+          1️⃣ Vòng lặp for — biết trước số lần lặp
+        </h4>
+        <pre
+          class="code"
+        ><span class="c-key">for</span> (<span class="c-key">let</span> i = <span class="c-num">0</span>; i < <span class="c-num">5</span>; i++) {
+  console.<span class="c-fn">log</span>(i);
+}
+<span class="c-com">// 0  1  2  3  4</span></pre>
+        <table class="spec">
+          <tr>
+            <th>Thành phần</th>
+            <th>Vai trò</th>
+          </tr>
+          <tr>
+            <td><code>let i = 0</code> — khởi tạo</td>
+            <td>Chạy 1 lần duy nhất, trước khi vòng lặp bắt đầu</td>
+          </tr>
+          <tr>
+            <td><code>i &lt; 5</code> — điều kiện</td>
+            <td>Kiểm tra TRƯỚC mỗi vòng, còn true thì tiếp tục lặp</td>
+          </tr>
+          <tr>
+            <td><code>i++</code> — cập nhật</td>
+            <td>Chạy SAU mỗi vòng, thường dùng để tăng biến đếm</td>
+          </tr>
+        </table>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          2️⃣ Duyệt mảng &amp; object — for...of / for...in
+        </h4>
+        <div class="grid2">
+          <div class="info-card">
+            <h4>for...of — duyệt MẢNG</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">const</span> fruits = [<span class="c-str">"Apple"</span>, <span class="c-str">"Mango"</span>];
+<span class="c-key">for</span> (<span class="c-key">const</span> fruit <span class="c-key">of</span> fruits) {
+  console.<span class="c-fn">log</span>(fruit);
+}
+<span class="c-com">// Apple, Mango</span></pre>
+            <p style="margin-top: 8px">
+              Lấy trực tiếp <b>GIÁ TRỊ</b> từng phần tử, không cần chỉ số i.
+            </p>
+          </div>
+          <div class="info-card">
+            <h4>for...in — duyệt OBJECT</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">const</span> country = { name: <span class="c-str">"VN"</span>, pop: <span class="c-num">100</span> };
+<span class="c-key">for</span> (<span class="c-key">const</span> key <span class="c-key">in</span> country) {
+  console.<span class="c-fn">log</span>(key);
+}
+<span class="c-com">// name, pop</span></pre>
+            <p style="margin-top: 8px">
+              Lấy <b>TÊN thuộc tính</b> (key), muốn lấy giá trị phải viết
+              <code>country[key]</code>.
+            </p>
+          </div>
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          3️⃣ while &amp; do...while — chưa biết trước số lần lặp
+        </h4>
+        <pre
+          class="code"
+        ><span class="c-key">let</span> count = <span class="c-num">0</span>;
+<span class="c-key">while</span> (count < <span class="c-num">5</span>) {
+  console.<span class="c-fn">log</span>(count);
+  count++;   <span class="c-com">// BẮT BUỘC! quên dòng này → lặp vô hạn</span>
+}</pre>
+        <div class="example-box">
+          <b>⚠️ Cảnh báo:</b> nếu quên <code>count++</code>, điều kiện
+          <code>count &lt; 5</code> luôn đúng mãi mãi → vòng lặp chạy
+          <b>VÔ HẠN</b>, treo trình duyệt. Luôn phải có 1 dòng thay đổi biến
+          điều kiện bên trong vòng lặp.
+        </div>
+        <pre
+          class="code"
+        ><span class="c-com">// Ví dụ thực tế: không biết trước bao nhiêu năm,
+// chỉ biết "dừng khi dân số >= 110"</span>
+<span class="c-key">let</span> population = <span class="c-num">100.3</span>;
+<span class="c-key">let</span> years = <span class="c-num">0</span>;
+<span class="c-key">while</span> (population < <span class="c-num">110</span>) {
+  population += <span class="c-num">1</span>;
+  years++;
+}
+console.<span class="c-fn">log</span>(<span class="c-str">`Sau ${years} năm, đạt ${population} triệu.`</span>);
+<span class="c-com">// Sau 10 năm, đạt 110.3 triệu.</span></pre>
+
+        <h4
+          style="
+            font-family: &quot;Baloo 2&quot;, sans-serif;
+            margin-top: 22px;
+            font-size: 1rem;
+          "
+        >
+          4 tình huống hay dùng while nhất
+        </h4>
+        <div class="grid2">
+          <div class="info-card">
+            <h4>1. Chờ người dùng nhập đúng dữ liệu</h4>
+            <p style="font-size: 0.82rem; margin-bottom: 8px">
+              Không biết họ sẽ nhập sai bao nhiêu lần trước khi đúng.
+            </p>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">let</span> age = Number(prompt(<span class="c-str">"Nhập tuổi (1-100):"</span>));
+<span class="c-key">while</span> (age < <span class="c-num">1</span> || age > <span class="c-num">100</span>) {
+  age = Number(prompt(<span class="c-str">"Sai rồi, nhập lại:"</span>));
+}</pre>
+          </div>
+          <div class="info-card">
+            <h4>2. Xử lý cho tới khi đạt 1 ngưỡng</h4>
+            <p style="font-size: 0.82rem; margin-bottom: 8px">
+              Ví dụ: gửi tiết kiệm, tính bao nhiêu năm mới đạt mục tiêu.
+            </p>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">let</span> saving = <span class="c-num">1000</span>, year = <span class="c-num">0</span>;
+<span class="c-key">while</span> (saving < <span class="c-num">2000</span>) {
+  saving = saving * <span class="c-num">1.1</span>;  <span class="c-com">// lãi 10%/năm</span>
+  year++;
+}
+<span class="c-com">// Sau 8 năm, đủ 2144</span></pre>
+          </div>
+          <div class="info-card">
+            <h4>3. Đọc dữ liệu tới khi hết</h4>
+            <p style="font-size: 0.82rem; margin-bottom: 8px">
+              Không biết trước tổng số phần tử, chỉ biết khi nào là hết.
+            </p>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">const</span> queue = [<span class="c-str">"task1"</span>, <span class="c-str">"task2"</span>, <span class="c-str">"task3"</span>];
+<span class="c-key">while</span> (queue.length > <span class="c-num">0</span>) {
+  <span class="c-key">const</span> task = queue.shift(); <span class="c-com">// lấy & xoá đầu</span>
+  console.<span class="c-fn">log</span>(<span class="c-str">`Đang xử lý: ${task}`</span>);
+}</pre>
+          </div>
+          <div class="info-card">
+            <h4>4. Vòng lặp chính của game</h4>
+            <p style="font-size: 0.82rem; margin-bottom: 8px">
+              Chạy tới khi thua/thoát — không biết trước chơi bao nhiêu lượt.
+            </p>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">let</span> health = <span class="c-num">100</span>, turn = <span class="c-num">0</span>;
+<span class="c-key">while</span> (health > <span class="c-num">0</span>) {
+  health -= <span class="c-num">10</span>;  <span class="c-com">// mỗi lượt mất 10 máu</span>
+  turn++;
+}
+console.<span class="c-fn">log</span>(<span class="c-str">"Game Over"</span>);</pre>
+          </div>
+        </div>
+
+        <pre
+          class="code"
+          style="margin-top: 16px"
+        ><span class="c-com">// do...while — chạy TRƯỚC, kiểm tra điều kiện SAU</span>
+<span class="c-key">let</span> x = <span class="c-num">99</span>;
+<span class="c-key">do</span> {
+  console.<span class="c-fn">log</span>(<span class="c-str">"chạy 1 lần"</span>);
+} <span class="c-key">while</span> (x < <span class="c-num">5</span>);
+<span class="c-com">// vẫn in ra 1 lần dù x=99 không thoả điều kiện ngay từ đầu</span></pre>
+
+        <div class="example-box">
+          <b>Ví dụ dễ hiểu:</b> <code>while</code> giống việc "nhìn trước khi
+          bước" — kiểm tra đường có an toàn không rồi mới đi.
+          <code>do...while</code> giống "bước rồi mới nhìn" — luôn bước 1 bước
+          đầu tiên, sau đó mới kiểm tra có nên bước tiếp không.
+        </div>
+
+        <table class="spec">
+          <tr>
+            <th>Loại vòng lặp</th>
+            <th>Khi nào dùng</th>
+          </tr>
+          <tr>
+            <td><code>for</code></td>
+            <td>Biết trước chính xác số lần lặp</td>
+          </tr>
+          <tr>
+            <td><code>for...of</code></td>
+            <td>Duyệt qua từng phần tử của mảng</td>
+          </tr>
+          <tr>
+            <td><code>for...in</code></td>
+            <td>Duyệt qua từng thuộc tính (key) của object</td>
+          </tr>
+          <tr>
+            <td><code>while</code></td>
+            <td>Không biết trước số lần, chỉ biết điều kiện dừng</td>
+          </tr>
+          <tr>
+            <td><code>do...while</code></td>
+            <td>Giống while, nhưng cần chạy ít nhất 1 lần</td>
+          </tr>
+        </table>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          4️⃣ break &amp; continue
+        </h4>
+        <div class="grid2">
+          <div class="info-card">
+            <h4>break — dừng HẲN vòng lặp</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">for</span> (<span class="c-key">let</span> i = <span class="c-num">0</span>; i < <span class="c-num">5</span>; i++) {
+  <span class="c-key">if</span> (i === <span class="c-num">2</span>) <span class="c-key">break</span>;
+  console.<span class="c-fn">log</span>(i);
+}
+<span class="c-com">// 0  1  (dừng ngay khi i=2)</span></pre>
+          </div>
+          <div class="info-card">
+            <h4>continue — bỏ qua vòng HIỆN TẠI</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">for</span> (<span class="c-key">let</span> i = <span class="c-num">0</span>; i < <span class="c-num">5</span>; i++) {
+  <span class="c-key">if</span> (i === <span class="c-num">2</span>) <span class="c-key">continue</span>;
+  console.<span class="c-fn">log</span>(i);
+}
+<span class="c-com">// 0 1 3 4 (bỏ qua i=2, vẫn chạy tiếp)</span></pre>
+          </div>
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          5️⃣ Vòng lặp lồng nhau (Nested loop)
+        </h4>
+        <pre
+          class="code"
+        ><span class="c-key">for</span> (<span class="c-key">let</span> i = <span class="c-num">1</span>; i <= <span class="c-num">3</span>; i++) {      <span class="c-com">// vòng NGOÀI</span>
+  console.<span class="c-fn">log</span>(<span class="c-str">`Bài ${i}`</span>);
+  <span class="c-key">for</span> (<span class="c-key">let</span> j = <span class="c-num">1</span>; j <= <span class="c-num">2</span>; j++) {    <span class="c-com">// vòng TRONG</span>
+    console.<span class="c-fn">log</span>(<span class="c-str">`  Câu ${j}`</span>);
+  }
+}
+<span class="c-com">// Bài 1 → Câu 1, Câu 2
+// Bài 2 → Câu 1, Câu 2
+// Bài 3 → Câu 1, Câu 2   (3 × 2 = 6 dòng)</span></pre>
+        <div class="pill-row">
+          <span class="pill"
+            >💡 Vòng trong chạy HẾT mỗi khi vòng ngoài chạy 1 lần</span
+          >
+          <span class="pill"
+            >⚠️ Đặt tên biến đếm khác nhau (i, j) để tránh nhầm lẫn khi lồng
+            nhau</span
+          >
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          6️⃣ Ví dụ thực tế — vòng lặp + tính toán mới
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Tip calculator: với mỗi hoá đơn, tính tiền tip rồi cộng ra tổng — lưu
+          cả 2 kết quả vào 2 mảng riêng, trong CÙNG 1 lần lặp.
+        </p>
+        <pre
+          class="code"
+        ><span class="c-com">// hàm tính tip: 15% nếu 50-300, còn lại 20%</span>
+<span class="c-key">const</span> calcTip = (bill) =>
+  bill >= <span class="c-num">50</span> && bill <= <span class="c-num">300</span> ? bill * <span class="c-num">0.15</span> : bill * <span class="c-num">0.2</span>;
+
+<span class="c-key">const</span> bills = [<span class="c-num">22</span>, <span class="c-num">295</span>, <span class="c-num">176</span>, <span class="c-num">440</span>, <span class="c-num">52</span>];
+<span class="c-key">const</span> tips = [];
+<span class="c-key">const</span> totals = [];
+
+<span class="c-key">for</span> (<span class="c-key">let</span> i = <span class="c-num">0</span>; i < bills.length; i++) {
+  <span class="c-key">const</span> tip = calcTip(bills[i]);    <span class="c-com">// tính MỚI</span>
+  tips.push(tip);
+  totals.push(bills[i] + tip);   <span class="c-com">// dùng lại tip vừa tính</span>
+}
+<span class="c-com">// tips:   [4.4, 44.25, 26.4, 88, 7.8]
+// totals: [26.4, 339.25, 202.4, 528, 59.8]</span></pre>
+        <div class="example-box">
+          <b>Điểm mấu chốt:</b> mỗi vòng lặp không chỉ "đọc" dữ liệu cũ, mà còn
+          <b>tính ra giá trị hoàn toàn mới</b> (tip) rồi dùng ngay giá trị đó
+          cho phép tính tiếp theo (total) — tất cả trong 1 lần duyệt, không cần
+          lặp lại lần 2.
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          7️⃣ Ví dụ thực tế — vòng lặp + if để lọc dữ liệu
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Có 1 mảng chứa nhiều mảng con (danh sách nước láng giềng). Chỉ in các
+          nước từ vị trí thứ 2 trở đi, và CHỈ với những mảng con có ít nhất 2
+          phần tử.
+        </p>
+        <pre class="code"><span class="c-key">const</span> listOfNeighbours = [
+  [<span class="c-str">'Canada'</span>, <span class="c-str">'Mexico'</span>],
+  [<span class="c-str">'Spain'</span>],
+  [<span class="c-str">'Norway'</span>, <span class="c-str">'Sweden'</span>, <span class="c-str">'Russia'</span>]
+];
+
+<span class="c-key">for</span> (<span class="c-key">let</span> i = <span class="c-num">0</span>; i < listOfNeighbours.length; i++) {
+  <span class="c-key">const</span> sub = listOfNeighbours[i];
+
+  <span class="c-key">if</span> (sub.length >= <span class="c-num">2</span>) {          <span class="c-com">// điều kiện lọc</span>
+    <span class="c-key">for</span> (<span class="c-key">let</span> j = <span class="c-num">1</span>; j < sub.length; j++) {  <span class="c-com">// bắt đầu từ j=1</span>
+      console.<span class="c-fn">log</span>(sub[j]);
+    }
+  }
+}
+<span class="c-com">// Mexico
+// Sweden
+// Russia   (bỏ qua 'Spain' vì mảng con chỉ có 1 phần tử)</span></pre>
+        <div class="pill-row">
+          <span class="pill"
+            >💡 if nằm NGOÀI quyết định có xử lý mảng con này không</span
+          >
+          <span class="pill"
+            >💡 vòng for bên trong bắt đầu từ j=1 (không phải 0) để bỏ qua phần
+            tử đầu tiên</span
+          >
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          8️⃣ Ví dụ thực tế — kiểu "accumulator" (tích lũy)
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Thay vì tạo mảng mới, gộp cả mảng lại thành 1 con số duy nhất — đây
+          chính là logic đứng sau <code>reduce()</code>.
+        </p>
+        <pre class="code"><span class="c-key">function</span> calcAverage(arr) {
+  <span class="c-key">let</span> sum = <span class="c-num">0</span>;              <span class="c-com">// biến tích lũy, phải dùng let vì bị gán lại</span>
+  <span class="c-key">for</span> (<span class="c-key">let</span> i = <span class="c-num">0</span>; i < arr.length; i++) {
+    sum += arr[i];         <span class="c-com">// cộng dồn từng phần tử</span>
+  }
+  <span class="c-key">return</span> sum / arr.length;
+}
+calcAverage([<span class="c-num">44</span>, <span class="c-num">23</span>, <span class="c-num">71</span>]);   <span class="c-com">// 46
+// Từng bước: sum=0 → 44 → 67 → 138, rồi 138/3 = 46</span></pre>
+        <div class="example-box">
+          <b>Liên hệ với reduce():</b>
+          <code>arr.reduce((total, num) => total + num, 0)</code> chính là đoạn
+          code trên nhưng viết gọn lại — biến <code>sum</code> đóng đúng vai trò
+          <code>total</code> trong reduce.
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          ⚠️ 3 bẫy hay gặp nhất
+        </h4>
+        <table class="spec">
+          <tr>
+            <th>Lỗi</th>
+            <th>Hậu quả</th>
+          </tr>
+          <tr>
+            <td>
+              Off-by-one: dùng <code>&lt;=</code> thay vì <code>&lt;</code> —
+              <code>i &lt;= arr.length</code>
+            </td>
+            <td>
+              Chạy thừa 1 lần, <code>arr[length]</code> không tồn tại →
+              undefined/NaN
+            </td>
+          </tr>
+          <tr>
+            <td>Quên cập nhật biến đếm trong <code>while</code></td>
+            <td>Điều kiện luôn true → vòng lặp VÔ HẠN, treo trình duyệt</td>
+          </tr>
+          <tr>
+            <td>
+              Trùng tên biến ở vòng lặp lồng nhau (<code>i</code> cả 2 vòng)
+            </td>
+            <td>Không lỗi cú pháp nhưng dễ nhầm lẫn kết quả</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- 8. DOM -->
+      <div class="topic c-rose" id="dom">
+        <div class="topic-head">
+          <div class="topic-num">8</div>
+          <div>
+            <h3>DOM (Document Object Model)</h3>
+            <div class="sub">
+              Cầu nối giữa tài liệu HTML và code JS — cách JS "nhìn thấy" và
+              thay đổi trang web
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <b>Vì sao cần DOM?</b> HTML viết sẵn là tĩnh — không đổi được sau khi
+          tải. DOM cho JS quyền đọc, sửa, thêm, xoá từng phần tử NGAY TRÊN trang
+          đang chạy, không cần load lại trang.
+        </div>
+
+        <pre
+          class="code"
+        >&lt;h1 id=<span class="c-str">"title"</span>&gt;Xin chào&lt;/h1&gt;
+
+document.getElementById(<span class="c-str">"title"</span>).textContent = <span class="c-str">"Chào bạn!"</span>;
+<span class="c-com">// Chữ trên trang tự đổi thành "Chào bạn!" — không cần load lại trang</span></pre>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 22px"
+        >
+          Cấu trúc — DOM là 1 cây phân cấp (tree)
+        </h4>
+        <div class="grid2">
+          <div class="info-card">
+            <pre class="code" style="margin: 0">
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Tiêu đề&lt;/h1&gt;
+    &lt;p&gt;Đoạn văn&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre
+            >
+          </div>
+          <div class="info-card">
+            <p>JS nhìn HTML này thành cây:</p>
+            <pre class="code" style="margin: 0">
+document
+ └── html
+      └── body
+           ├── h1
+           └── p</pre
+            >
+            <p style="margin-top: 8px">
+              Mỗi thẻ HTML trở thành 1 <b>node</b> trong cây — JS đi tới từng
+              node để đọc/sửa nó. <code>document</code> là node gốc (root), điểm
+              truy cập đầu tiên của cả cây.
+            </p>
+          </div>
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          1️⃣ Chọn phần tử
+        </h4>
+        <table class="spec">
+          <tr>
+            <th>Cách chọn</th>
+            <th>Trả về</th>
+          </tr>
+          <tr>
+            <td><code>document.getElementById("title")</code></td>
+            <td>1 phần tử duy nhất theo id</td>
+          </tr>
+          <tr>
+            <td><code>document.getElementsByClassName("nav-item")</code></td>
+            <td>Danh sách TẤT CẢ phần tử theo class</td>
+          </tr>
+          <tr>
+            <td><code>document.querySelector(".nav-item")</code></td>
+            <td>Phần tử ĐẦU TIÊN khớp CSS selector bất kỳ</td>
+          </tr>
+          <tr>
+            <td><code>document.querySelectorAll(".nav-item")</code></td>
+            <td>TẤT CẢ phần tử khớp CSS selector bất kỳ</td>
+          </tr>
+        </table>
+        <div class="pill-row">
+          <span class="pill"
+            >⭐ Nên dùng querySelector/querySelectorAll — nhận bất kỳ CSS
+            selector nào, giống hệt cách viết trong file .css</span
+          >
+          <span class="pill"
+            >vd:
+            <code
+              >document.querySelector("#navbar .nav-item:first-child")</code
+            ></span
+          >
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          2️⃣ Đọc &amp; sửa nội dung
+        </h4>
+        <pre
+          class="code"
+        ><span class="c-key">const</span> title = document.querySelector(<span class="c-str">"h1"</span>);
+console.<span class="c-fn">log</span>(title.textContent);      <span class="c-com">// đọc chữ hiện tại</span>
+title.textContent = <span class="c-str">"Tiêu đề mới"</span>;    <span class="c-com">// đổi chữ (an toàn)</span>
+title.innerHTML = <span class="c-str">"&lt;b&gt;In đậm&lt;/b&gt;"</span>;   <span class="c-com">// cho phép chèn thẻ HTML</span></pre>
+        <div class="pill-row">
+          <span class="pill"
+            >📝 textContent → hiện nguyên chữ &lt;b&gt;, KHÔNG render thẻ</span
+          >
+          <span class="pill"
+            >⚠️ innerHTML → render thẻ thành in đậm thật, nhưng rủi ro bảo mật
+            (XSS) nếu chèn dữ liệu người dùng nhập trực tiếp</span
+          >
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          3️⃣ Thuộc tính &amp; style
+        </h4>
+        <pre
+          class="code"
+        ><span class="c-key">const</span> img = document.querySelector(<span class="c-str">"img"</span>);
+img.src = <span class="c-str">"new-image.jpg"</span>;      <span class="c-com">// đổi thuộc tính src (property)</span>
+img.alt = <span class="c-str">"Ảnh mới"</span>;
+img.style.width = <span class="c-str">"300px"</span>;       <span class="c-com">// đổi CSS trực tiếp</span>
+img.style.border = <span class="c-str">"2px solid red"</span>;</pre>
+        <div class="example-box">
+          <b>Liên hệ:</b> <code>img.src</code>, <code>img.alt</code> ở đây chính
+          là các <b>property</b> — xem chi tiết phân biệt với attribute ở nhánh
+          tiếp theo 👉
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          4️⃣ classList — đổi giao diện qua class
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Cách phổ biến nhất để đổi giao diện qua JS: không sửa từng dòng CSS,
+          chỉ toggle class có sẵn.
+        </p>
+        <pre
+          class="code"
+        ><span class="c-key">const</span> box = document.querySelector(<span class="c-str">".box"</span>);
+box.classList.add(<span class="c-str">"active"</span>);       <span class="c-com">// thêm class</span>
+box.classList.remove(<span class="c-str">"active"</span>);    <span class="c-com">// xoá class</span>
+box.classList.toggle(<span class="c-str">"active"</span>);    <span class="c-com">// có thì xoá, không có thì thêm</span>
+box.classList.contains(<span class="c-str">"active"</span>);  <span class="c-com">// → true / false</span></pre>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          5️⃣ Tạo &amp; xoá phần tử
+        </h4>
+        <pre class="code"><span class="c-com">// Tạo phần tử mới</span>
+<span class="c-key">const</span> newLi = document.createElement(<span class="c-str">"li"</span>);
+newLi.textContent = <span class="c-str">"Mục mới"</span>;
+document.querySelector(<span class="c-str">"ul"</span>).appendChild(newLi);   <span class="c-com">// thêm vào trang</span>
+
+<span class="c-com">// Xoá phần tử</span>
+newLi.remove();</pre>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          6️⃣ Sự kiện — addEventListener
+        </h4>
+        <pre
+          class="code"
+        ><span class="c-key">const</span> button = document.querySelector(<span class="c-str">"button"</span>);
+button.addEventListener(<span class="c-str">"click"</span>, <span class="c-key">function</span> () {
+  console.<span class="c-fn">log</span>(<span class="c-str">"Đã click!"</span>);
+});</pre>
+        <div class="grid2" style="margin-top: 12px">
+          <div class="info-card">
+            <h4>Ví dụ thực tế 1 — nút "Back to top"</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">const</span> btn = document.getElementById(<span class="c-str">"backToTop"</span>);
+window.addEventListener(<span class="c-str">"scroll"</span>, () => {
+  <span class="c-key">if</span> (window.scrollY > <span class="c-num">300</span>) {
+    btn.classList.add(<span class="c-str">"show"</span>);
+  } <span class="c-key">else</span> {
+    btn.classList.remove(<span class="c-str">"show"</span>);
+  }
+});
+btn.addEventListener(<span class="c-str">"click"</span>, () => {
+  window.scrollTo({ top: <span class="c-num">0</span>, behavior: <span class="c-str">"smooth"</span> });
+});</pre>
+          </div>
+          <div class="info-card">
+            <h4>Ví dụ thực tế 2 — kiểm tra số đoán</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            >document.querySelector(<span class="c-str">".check"</span>)
+  .addEventListener(<span class="c-str">"click"</span>, <span class="c-key">function</span> () {
+  <span class="c-key">const</span> guess = Number(
+    document.querySelector(<span class="c-str">".guess"</span>).value
+  );
+  console.<span class="c-fn">log</span>(guess, <span class="c-key">typeof</span> guess);
+});
+<span class="c-com">// .value luôn trả về string → phải Number() để ép kiểu</span></pre>
+          </div>
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          📋 Bảng tổng kết thao tác DOM cơ bản
+        </h4>
+        <table class="spec">
+          <tr>
+            <th>Thao tác</th>
+            <th>Cú pháp</th>
+          </tr>
+          <tr>
+            <td>Chọn phần tử</td>
+            <td><code>querySelector</code>, <code>querySelectorAll</code></td>
+          </tr>
+          <tr>
+            <td>Đọc/sửa chữ</td>
+            <td><code>textContent</code>, <code>innerHTML</code></td>
+          </tr>
+          <tr>
+            <td>Thuộc tính</td>
+            <td><code>element.src</code>, <code>element.href</code>...</td>
+          </tr>
+          <tr>
+            <td>Style</td>
+            <td><code>element.style.xxx</code></td>
+          </tr>
+          <tr>
+            <td>Class</td>
+            <td><code>classList.add / remove / toggle</code></td>
+          </tr>
+          <tr>
+            <td>Tạo mới</td>
+            <td><code>createElement</code> + <code>appendChild</code></td>
+          </tr>
+          <tr>
+            <td>Xoá</td>
+            <td><code>element.remove()</code></td>
+          </tr>
+          <tr>
+            <td>Sự kiện</td>
+            <td><code>addEventListener</code></td>
+          </tr>
+        </table>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          🧹 Refactoring khi làm việc với DOM (tối ưu code)
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Refactoring là kỹ thuật tối ưu lại code, loại bỏ phần trùng lặp — tuân
+          thủ nguyên tắc <b>DRY (Don't Repeat Yourself)</b>.
+        </p>
+
+        <h4
+          style="
+            font-family: &quot;Baloo 2&quot;, sans-serif;
+            margin-top: 18px;
+            font-size: 1rem;
+          "
+        >
+          1️⃣ Tránh lặp querySelector nhiều lần
+        </h4>
+        <div class="grid2">
+          <div class="info-card">
+            <h4>❌ Trước — gọi lại nhiều lần</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            >document.querySelector(<span class="c-str">".box"</span>)
+  .classList.add(<span class="c-str">"active"</span>);
+
+document.querySelector(<span class="c-str">".box"</span>)
+  .style.color = <span class="c-str">"red"</span>;
+
+document.querySelector(<span class="c-str">".box"</span>)
+  .textContent = <span class="c-str">"Đã cập nhật"</span>;
+<span class="c-com">// → JS phải tìm lại phần tử trong DOM
+//   tận 3 lần cho cùng 1 phần tử!</span></pre>
+          </div>
+          <div class="info-card">
+            <h4>✅ Sau — lưu vào biến, tái sử dụng</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">const</span> box = document.querySelector(<span class="c-str">".box"</span>);
+
+box.classList.add(<span class="c-str">"active"</span>);
+box.style.color = <span class="c-str">"red"</span>;
+box.textContent = <span class="c-str">"Đã cập nhật"</span>;
+<span class="c-com">// → chỉ tìm 1 lần, dùng lại biến "box"
+//   code ngắn hơn, đỡ tốn tài nguyên</span></pre>
+          </div>
+        </div>
+
+        <h4
+          style="
+            font-family: &quot;Baloo 2&quot;, sans-serif;
+            margin-top: 22px;
+            font-size: 1rem;
+          "
+        >
+          2️⃣ Tách logic lặp lại thành hàm riêng
+        </h4>
+        <div class="grid2">
+          <div class="info-card">
+            <h4>❌ Trước — code trùng lặp ở 2 nút</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            >btnSave.addEventListener(<span class="c-str">"click"</span>, () => {
+  message.textContent = <span class="c-str">"Đã lưu!"</span>;
+  message.classList.add(<span class="c-str">"show"</span>);
+  <span class="c-key">setTimeout</span>(() =>
+    message.classList.remove(<span class="c-str">"show"</span>), <span class="c-num">2000</span>);
+});
+
+btnDelete.addEventListener(<span class="c-str">"click"</span>, () => {
+  message.textContent = <span class="c-str">"Đã xoá!"</span>;
+  message.classList.add(<span class="c-str">"show"</span>);
+  <span class="c-key">setTimeout</span>(() =>
+    message.classList.remove(<span class="c-str">"show"</span>), <span class="c-num">2000</span>);
+});</pre>
+          </div>
+          <div class="info-card">
+            <h4>✅ Sau — gộp thành 1 hàm dùng chung</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">function</span> showMessage(text) {
+  message.textContent = text;
+  message.classList.add(<span class="c-str">"show"</span>);
+  <span class="c-key">setTimeout</span>(() =>
+    message.classList.remove(<span class="c-str">"show"</span>), <span class="c-num">2000</span>);
+}
+
+btnSave.addEventListener(<span class="c-str">"click"</span>,
+  () => showMessage(<span class="c-str">"Đã lưu!"</span>));
+btnDelete.addEventListener(<span class="c-str">"click"</span>,
+  () => showMessage(<span class="c-str">"Đã xoá!"</span>));
+<span class="c-com">// → cần đổi thời gian hiện (2000ms)? chỉ sửa 1 chỗ</span></pre>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <b>Ví dụ dễ hiểu:</b> không refactor giống việc bạn ghi cùng 1 công
+          thức nấu ăn ra giấy nhớ dán khắp bếp — muốn đổi 1 nguyên liệu phải sửa
+          từng tờ. Refactor giống việc gom công thức đó vào đúng 1 cuốn sổ tay
+          (hàm dùng chung) — cần sửa gì chỉ mở đúng 1 trang.
+        </div>
+      </div>
+
+      <!-- 9. ATTRIBUTE VS PROPERTY -->
+      <div class="topic c-yellow" id="attrprop">
+        <div class="topic-head">
+          <div class="topic-num">9</div>
+          <div>
+            <h3>Attribute vs Property</h3>
+            <div class="sub">
+              2 khái niệm rất dễ nhầm khi làm việc với DOM trong JavaScript
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="info-card">
+            <h4>🏷️ Attribute (thuộc tính HTML)</h4>
+            <p>
+              Là giá trị được khai báo <b>ngay trong markup HTML</b>. Luôn luôn
+              là <b>chuỗi (string)</b>, đại diện cho giá trị <b>ban đầu</b> lúc
+              trang tải — gần như không đổi trừ khi bạn chủ động sửa bằng
+              <code>setAttribute()</code>.
+            </p>
+          </div>
+          <div class="info-card">
+            <h4>⚙️ Property (thuộc tính DOM)</h4>
+            <p>
+              Là thuộc tính của <b>object JS</b> đại diện cho phần tử đó trong
+              DOM. Phản ánh trạng thái <b>HIỆN TẠI, sống động</b> — có thể là
+              bất kỳ kiểu dữ liệu nào (string, boolean, number, function...),
+              thay đổi liên tục khi người dùng tương tác.
+            </p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <b>Ví dụ dễ hiểu:</b> attribute giống
+          <b>ngày sinh ghi trên giấy khai sinh</b> — cố định, không đổi theo
+          thời gian. Property giống <b>tuổi thực tế của bạn hôm nay</b> — luôn
+          cập nhật theo thời gian thực, dù vẫn "bắt nguồn" từ ngày sinh ban đầu
+          đó.
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          Ví dụ thực chiến — ô input
+        </h4>
+        <pre
+          class="code"
+        >&lt;input <span class="c-fn">id</span>=<span class="c-str">"box"</span> <span class="c-fn">value</span>=<span class="c-str">"Hello"</span>&gt;
+
+<span class="c-key">const</span> el = document.<span class="c-fn">getElementById</span>(<span class="c-str">"box"</span>);
+
+<span class="c-com">// Ngay sau khi tải trang, cả 2 đều giống nhau:</span>
+el.getAttribute(<span class="c-str">"value"</span>);  <span class="c-com">// "Hello"</span>
+el.value;                 <span class="c-com">// "Hello"</span>
+
+<span class="c-com">// Người dùng gõ thêm chữ " World" vào ô input...</span>
+el.getAttribute(<span class="c-str">"value"</span>);  <span class="c-com">// "Hello"  ← KHÔNG đổi, vẫn là giá trị HTML gốc</span>
+el.value;                 <span class="c-com">// "Hello World"  ← property phản ánh đúng nội dung hiện tại</span></pre>
+
+        <div class="grid2" style="margin-top: 16px">
+          <div class="info-card">
+            <h4>Ví dụ 2 — checkbox</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            >&lt;input type=<span class="c-str">"checkbox"</span> checked&gt;
+
+el.getAttribute(<span class="c-str">"checked"</span>); <span class="c-com">// "" (có mặt = true ban đầu)</span>
+el.checked;  <span class="c-com">// true</span>
+
+<span class="c-com">// User bỏ tick checkbox...</span>
+el.getAttribute(<span class="c-str">"checked"</span>); <span class="c-com">// vẫn còn "" — không đổi!</span>
+el.checked;  <span class="c-com">// false — đúng trạng thái hiện tại</span></pre>
+          </div>
+          <div class="info-card">
+            <h4>Ví dụ 3 — class</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            >&lt;div class=<span class="c-str">"box active"</span>&gt;&lt;/div&gt;
+
+el.getAttribute(<span class="c-str">"class"</span>); <span class="c-com">// "box active" (chuỗi)</span>
+el.className;   <span class="c-com">// "box active" (chuỗi, property tương ứng)</span>
+el.classList;   <span class="c-com">// object đặc biệt: .add() .remove() .toggle()</span></pre>
+          </div>
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          Bảng so sánh nhanh
+        </h4>
+        <table class="spec">
+          <tr>
+            <th></th>
+            <th>Attribute</th>
+            <th>Property</th>
+          </tr>
+          <tr>
+            <td>Nơi định nghĩa</td>
+            <td>Trong mã HTML (markup)</td>
+            <td>Trên object JS đại diện phần tử DOM</td>
+          </tr>
+          <tr>
+            <td>Kiểu dữ liệu</td>
+            <td>Luôn là string</td>
+            <td>Bất kỳ kiểu nào (string, boolean, number...)</td>
+          </tr>
+          <tr>
+            <td>Giá trị phản ánh</td>
+            <td>Trạng thái BAN ĐẦU lúc tải trang</td>
+            <td>Trạng thái HIỆN TẠI, thời gian thực</td>
+          </tr>
+          <tr>
+            <td>Cách truy cập</td>
+            <td><code>getAttribute()</code> / <code>setAttribute()</code></td>
+            <td>Truy cập trực tiếp <code>element.tenProperty</code></td>
+          </tr>
+          <tr>
+            <td>Đồng bộ 2 chiều?</td>
+            <td colspan="2">
+              Hầu hết được "reflect" (đồng bộ) lúc đầu, nhưng 1 số cặp (value,
+              checked...) sẽ TÁCH RA khi người dùng tương tác
+            </td>
+          </tr>
+        </table>
+
+        <div class="pill-row">
+          <span class="pill"
+            >✅ Muốn biết/đổi trạng thái HIỆN TẠI (giá trị đang gõ, có đang tick
+            không...) → dùng Property</span
+          >
+          <span class="pill"
+            >✅ Muốn đọc/ghi giá trị GỐC khai báo trong HTML, hoặc custom data-*
+            → dùng Attribute (getAttribute/setAttribute/dataset)</span
+          >
+          <span class="pill"
+            >💡 <code>data-*</code> attribute tuỳ chỉnh luôn truy cập qua
+            property đặc biệt <code>element.dataset.tenKhoa</code></span
+          >
+        </div>
+
+        <pre
+          class="code"
+          style="margin-top: 16px"
+        ><span class="c-com">// data-* attribute → dataset property</span>
+&lt;div <span class="c-fn">id</span>=<span class="c-str">"user"</span> <span class="c-fn">data-user-id</span>=<span class="c-str">"42"</span>&gt;&lt;/div&gt;
+
+<span class="c-key">const</span> el = document.getElementById(<span class="c-str">"user"</span>);
+console.<span class="c-fn">log</span>(el.dataset.userId);   <span class="c-com">// "42"</span></pre>
+      </div>
+
+      <!-- 10. PIG GAME PROJECT -->
+      <div class="topic c-pink" id="piggame">
+        <div class="topic-head">
+          <div class="topic-num">10</div>
+          <div>
+            <h3>🎲 Dự án thực hành: Pig Game</h3>
+            <div class="sub">
+              Áp dụng toàn bộ kiến thức DOM + state variables + event listener
+              vào 1 game hoàn chỉnh
+            </div>
+          </div>
+        </div>
+
+        <h4 style="font-family: &quot;Baloo 2&quot;, sans-serif">Luật chơi</h4>
+        <div class="grid2">
+          <div class="info-card">
+            <h4>🎲 Roll dice</h4>
+            <p>
+              Tung xúc xắc → ra số khác 1 → cộng dồn vào điểm tạm (current
+              score). Ra đúng số 1 → mất điểm tạm, đổi lượt ngay.
+            </p>
+          </div>
+          <div class="info-card">
+            <h4>✋ Hold score</h4>
+            <p>
+              Chốt điểm tạm vào tổng điểm. Nếu tổng điểm ≥ 100 → thắng. Nếu chưa
+              → đổi lượt cho đối thủ.
+            </p>
+          </div>
+        </div>
+        <div class="pill-row">
+          <span class="pill"
+            >🔄 Reset game: đặt lại toàn bộ điểm về 0, Player 1 chơi trước</span
+          >
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          1️⃣ Chọn phần tử &amp; khai báo state
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Mọi nút bấm đều cần "nhìn thấy" cùng 1 bộ biến trạng thái — nên khai
+          báo ở phạm vi NGOÀI CÙNG, không khai báo riêng bên trong từng hàm.
+        </p>
+        <pre
+          class="code"
+        ><span class="c-key">const</span> player0El = document.querySelector(<span class="c-str">'.player--0'</span>);
+<span class="c-key">const</span> player1El = document.querySelector(<span class="c-str">'.player--1'</span>);
+<span class="c-key">const</span> score0El = document.getElementById(<span class="c-str">'score--0'</span>);
+<span class="c-key">const</span> score1El = document.getElementById(<span class="c-str">'score--1'</span>);
+<span class="c-key">const</span> diceEl = document.querySelector(<span class="c-str">'.dice'</span>);
+<span class="c-key">const</span> btnRoll = document.querySelector(<span class="c-str">'.btn--roll'</span>);
+<span class="c-key">const</span> btnHold = document.querySelector(<span class="c-str">'.btn--hold'</span>);
+<span class="c-key">const</span> btnNew = document.querySelector(<span class="c-str">'.btn--new'</span>);
+
+<span class="c-com">// state — khai báo NGOÀI CÙNG bằng let, để mọi hàm dùng chung</span>
+<span class="c-key">let</span> scores, currentScore, activePlayer, playing;</pre>
+
+        <div class="example-box">
+          <b>⚠️ Bẫy hay gặp nhất của bài này:</b> nếu khai báo
+          <code>const scores = [0,0]</code> BÊN TRONG hàm <code>init()</code>,
+          biến này chỉ tồn tại cục bộ trong hàm đó — các hàm khác (như xử lý nút
+          Hold) sẽ báo lỗi <code>scores is not defined</code> vì không "nhìn
+          thấy" nó.
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          2️⃣ init() — hàm khởi tạo / reset
+        </h4>
+        <pre
+          class="code"
+        ><span class="c-key">const</span> init = <span class="c-key">function</span> () {
+  scores = [<span class="c-num">0</span>, <span class="c-num">0</span>];   <span class="c-com">// KHÔNG dùng const, chỉ GÁN LẠI biến ngoài</span>
+  currentScore = <span class="c-num">0</span>;
+  activePlayer = <span class="c-num">0</span>;
+  playing = <span class="c-key">true</span>;
+
+  score0El.textContent = <span class="c-num">0</span>;
+  score1El.textContent = <span class="c-num">0</span>;
+  diceEl.classList.add(<span class="c-str">'hidden'</span>);
+};
+
+init();   <span class="c-com">// gọi 1 lần khi trang vừa load</span></pre>
+        <div class="pill-row">
+          <span class="pill"
+            >💡 Viết thành hàm riêng để dùng lại cho cả lúc load trang LẪN lúc
+            bấm nút "New Game" — đúng tinh thần refactoring</span
+          >
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          3️⃣ switchPlayer() — hàm đổi lượt dùng chung
+        </h4>
+        <pre
+          class="code"
+        ><span class="c-key">const</span> switchPlayer = <span class="c-key">function</span> () {
+  document.getElementById(<span class="c-str">`current--${activePlayer}`</span>).textContent = <span class="c-num">0</span>;
+  currentScore = <span class="c-num">0</span>;
+  activePlayer = activePlayer === <span class="c-num">0</span> ? <span class="c-num">1</span> : <span class="c-num">0</span>;
+  player0El.classList.toggle(<span class="c-str">'player--active'</span>);
+  player1El.classList.toggle(<span class="c-str">'player--active'</span>);
+};</pre>
+        <table class="spec">
+          <tr>
+            <th>Bước</th>
+            <th>Việc cần làm khi đổi lượt</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Reset hiển thị điểm tạm về 0</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>
+              Reset biến <code>currentScore</code> — quên bước này thì điểm tạm
+              cũ bị "dính" sang lượt sau
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Đảo <code>activePlayer</code> giữa 0 và 1</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Toggle class đổi màu nền cho cả 2 người chơi</td>
+          </tr>
+        </table>
+        <div class="example-box">
+          <b>⚠️ classList.toggle() không tự đổi màu:</b>
+          <code>classList</code> chỉ thêm/bớt TÊN class — muốn thấy đổi màu nền,
+          CSS phải có sẵn rule cho class đó, ví dụ
+          <code>.player--active { background-color: #2f2f2f; }</code>
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          4️⃣ Event: nút Roll — tung xúc xắc
+        </h4>
+        <pre
+          class="code"
+        >btnRoll.addEventListener(<span class="c-str">'click'</span>, <span class="c-key">function</span> () {
+  <span class="c-key">if</span> (playing) {
+    <span class="c-key">const</span> dice = Math.trunc(Math.random() * <span class="c-num">6</span>) + <span class="c-num">1</span>;
+    diceEl.classList.remove(<span class="c-str">'hidden'</span>);
+    diceEl.src = <span class="c-str">`dice-${dice}.png`</span>;
+
+    <span class="c-key">if</span> (dice !== <span class="c-num">1</span>) {
+      currentScore += dice;
+      document.getElementById(<span class="c-str">`current--${activePlayer}`</span>).textContent = currentScore;
+    } <span class="c-key">else</span> {
+      switchPlayer();
+    }
+  }
+});</pre>
+        <div class="example-box">
+          <b>⚠️ classList.remove('.hidden') — thừa dấu chấm:</b>
+          <code>classList</code> làm việc với tên class THUẦN TÚY, không cần dấu
+          <code>.</code> ở đầu (dấu chấm chỉ dùng trong CSS selector của
+          <code>querySelector</code>). Viết <code>'.hidden'</code> sẽ không báo
+          lỗi nhưng cũng không có tác dụng gì.
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          5️⃣ Event: nút Hold — giữ điểm
+        </h4>
+        <pre
+          class="code"
+        >btnHold.addEventListener(<span class="c-str">'click'</span>, <span class="c-key">function</span> () {
+  <span class="c-key">if</span> (playing) {
+    scores[activePlayer] += currentScore;
+    document.getElementById(<span class="c-str">`score--${activePlayer}`</span>).textContent = scores[activePlayer];
+
+    <span class="c-key">if</span> (scores[activePlayer] >= <span class="c-num">100</span>) {
+      playing = <span class="c-key">false</span>;
+      diceEl.classList.add(<span class="c-str">'hidden'</span>);
+    } <span class="c-key">else</span> {
+      switchPlayer();
+    }
+  }
+});
+
+btnNew.addEventListener(<span class="c-str">'click'</span>, init);</pre>
+        <div class="example-box">
+          <b>⚠️ addEventListener('click', init()) — thừa dấu ngoặc:</b> có
+          <code>()</code> sau <code>init</code> khiến hàm CHẠY NGAY khi dòng này
+          thực thi (lúc trang load), thay vì đợi tới lúc click. Luôn truyền TÊN
+          hàm, không kèm dấu ngoặc.
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          📋 5 lỗi lặp lại nhiều nhất khi làm bài này
+        </h4>
+        <table class="spec">
+          <tr>
+            <th>Lỗi</th>
+            <th>Hậu quả</th>
+          </tr>
+          <tr>
+            <td>Gõ nhầm tên biến (<code>scores</code> ↔ <code>score</code>)</td>
+            <td>
+              ReferenceError — nên dùng autocomplete của editor thay vì gõ tay
+              lại
+            </td>
+          </tr>
+          <tr>
+            <td><code>const</code> khai báo lệch phạm vi (scope)</td>
+            <td>
+              Biến "biến mất" ngay khi hàm chạy xong, hàm khác không dùng được
+            </td>
+          </tr>
+          <tr>
+            <td>Thừa <code>()</code> khi truyền hàm vào addEventListener</td>
+            <td>Hàm chạy ngay lập tức, không đợi click</td>
+          </tr>
+          <tr>
+            <td>Thiếu dấu <code>.</code> trong querySelector class</td>
+            <td>
+              <code>querySelector('player--0')</code> tìm nhầm sang tên thẻ
+              HTML, phải là <code>'.player--0'</code>
+            </td>
+          </tr>
+          <tr>
+            <td>classList đổi đúng nhưng CSS chưa định nghĩa</td>
+            <td>
+              JS chạy đúng nhưng nhìn ngoài tưởng "không chạy" — kiểm tra CSS
+              trước khi nghi ngờ JS
+            </td>
+          </tr>
+        </table>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          🧩 4 khối cần có trong 1 mini-game DOM
+        </h4>
+        <div class="pill-row">
+          <span class="pill"
+            >1️⃣ Chọn phần tử — querySelector cho mọi element cần đọc/sửa</span
+          >
+          <span class="pill"
+            >2️⃣ State — let ở phạm vi ngoài cùng, mọi hàm dùng chung</span
+          >
+          <span class="pill"
+            >3️⃣ Hàm dùng chung — init(), switchPlayer() tách riêng, gọi lại
+            nhiều lần</span
+          >
+          <span class="pill"
+            >4️⃣ Event listener — cho từng nút, luôn kiểm tra playing trước khi
+            chạy</span
+          >
+        </div>
+      </div>
+
+      <!-- 11. MODAL WINDOW PROJECT -->
+      <div class="topic c-teal" id="modal">
+        <div class="topic-head">
+          <div class="topic-num">11</div>
+          <div>
+            <h3>🪟 Dự án thực hành: Modal Window</h3>
+            <div class="sub">
+              Cửa sổ pop-up kinh điển — bài tập DOM ngắn gọn nhưng hội tụ rất
+              nhiều kỹ thuật hay dùng
+            </div>
+          </div>
+        </div>
+
+        <p style="color: var(--ink-soft); font-size: 0.92rem">
+          Modal là 1 hộp thoại nổi lên giữa màn hình (vd: form đăng ký, thông
+          báo, xác nhận xoá...), kèm 1 lớp phủ mờ (overlay) phía sau để làm mờ
+          nội dung trang và ngăn thao tác ngoài modal.
+        </p>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 22px"
+        >
+          1️⃣ Chọn phần tử
+        </h4>
+        <pre class="code"><span class="c-str">'use strict'</span>;
+
+<span class="c-key">const</span> modal = document.querySelector(<span class="c-str">'.modal'</span>);
+<span class="c-key">const</span> overlay = document.querySelector(<span class="c-str">'.overlay'</span>);
+<span class="c-key">const</span> btnCloseModal = document.querySelector(<span class="c-str">'.close-modal'</span>);
+<span class="c-key">const</span> btnsOpenModal = document.querySelectorAll(<span class="c-str">'.show-modal'</span>);</pre>
+        <div class="pill-row">
+          <span class="pill"
+            >💡 'use strict' — bật chế độ nghiêm ngặt, giúp JS báo lỗi rõ ràng
+            hơn (vd: gán giá trị cho biến chưa khai báo)</span
+          >
+          <span class="pill"
+            >⚠️ btnsOpenModal có "s" — vì querySelectorAll trả về NHIỀU phần tử
+            (NodeList), khác hẳn 3 biến còn lại chỉ có 1 phần tử</span
+          >
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          2️⃣ openModal() / closeModal() — cặp hàm đối xứng
+        </h4>
+        <pre
+          class="code"
+        ><span class="c-key">const</span> openModal = <span class="c-key">function</span> () {
+  modal.classList.remove(<span class="c-str">'hidden'</span>);
+  overlay.classList.remove(<span class="c-str">'hidden'</span>);
+};
+
+<span class="c-key">const</span> closeModal = <span class="c-key">function</span> () {
+  modal.classList.add(<span class="c-str">'hidden'</span>);
+  overlay.classList.add(<span class="c-str">'hidden'</span>);
+};</pre>
+        <div class="example-box">
+          <b>Liên hệ:</b> đây chính là kỹ thuật
+          <code>classList.add/remove</code> đã học ở nhánh DOM — ẩn/hiện phần tử
+          không phải bằng cách xoá nó khỏi trang, mà bằng cách toggle 1 class
+          CSS (thường là <code>.hidden { display: none; }</code>).
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          3️⃣ Nhiều nút mở, 1 nút đóng — vì sao cần vòng lặp?
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Trang có thể có NHIỀU nút cùng mở modal (vd: nhiều nút "Đăng ký" rải
+          khắp trang), nhưng <code>addEventListener</code> chỉ gắn được cho
+          <b>1 phần tử</b> mỗi lần gọi — nên phải lặp qua từng phần tử trong
+          NodeList.
+        </p>
+        <pre
+          class="code"
+        ><span class="c-key">for</span> (<span class="c-key">let</span> i = <span class="c-num">0</span>; i < btnsOpenModal.length; i++)
+  btnsOpenModal[i].addEventListener(<span class="c-str">'click'</span>, openModal);</pre>
+        <div class="pill-row">
+          <span class="pill"
+            >💡 Đây chính là ví dụ thực tế của nhánh Vòng lặp: for +
+            NodeList.length, không biết trước trang có bao nhiêu nút
+            "show-modal"</span
+          >
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          4️⃣ 3 cách đóng modal — cho trải nghiệm người dùng tốt hơn
+        </h4>
+        <div class="grid2">
+          <div class="info-card">
+            <h4>Cách 1 — bấm nút X</h4>
+            <pre class="code" style="margin: 0">btnCloseModal.addEventListener(
+  <span class="c-str">'click'</span>, closeModal
+);</pre>
+          </div>
+          <div class="info-card">
+            <h4>Cách 2 — bấm ra ngoài overlay</h4>
+            <pre class="code" style="margin: 0">overlay.addEventListener(
+  <span class="c-str">'click'</span>, closeModal
+);</pre>
+            <p style="margin-top: 6px">
+              Overlay là lớp phủ mờ toàn màn hình phía sau modal — bấm vào đó
+              nghĩa là người dùng muốn thoát ra.
+            </p>
+          </div>
+        </div>
+        <pre
+          class="code"
+          style="margin-top: 12px"
+        ><span class="c-com">// Cách 3 — nhấn phím Escape</span>
+document.addEventListener(<span class="c-str">'keydown'</span>, <span class="c-key">function</span> (e) {
+  <span class="c-key">if</span> (e.key === <span class="c-str">'Escape'</span> && !modal.classList.contains(<span class="c-str">'hidden'</span>)) {
+    closeModal();
+  }
+});</pre>
+        <div class="example-box">
+          <b
+            >Vì sao cần kiểm tra
+            <code>!modal.classList.contains('hidden')</code>?</b
+          >
+          Nếu không có điều kiện này, người dùng nhấn Escape bất cứ lúc nào — kể
+          cả khi modal đang ẩn — cũng sẽ gọi <code>closeModal()</code> một cách
+          vô nghĩa. Kiểm tra "modal có đang mở không" trước, giống hệt logic
+          <code>if (playing)</code> trong Pig Game — luôn canh gác (guard) trước
+          khi cho hành động xảy ra.
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          🔑 e.key — đọc phím vừa nhấn
+        </h4>
+        <table class="spec">
+          <tr>
+            <th>Sự kiện bàn phím</th>
+            <th>Ý nghĩa</th>
+          </tr>
+          <tr>
+            <td><code>keydown</code></td>
+            <td>Bắn ra ngay khi phím vừa được nhấn xuống</td>
+          </tr>
+          <tr>
+            <td><code>e.key</code></td>
+            <td>
+              Tên phím vừa nhấn, dạng chuỗi — vd <code>"Escape"</code>,
+              <code>"Enter"</code>, <code>"a"</code>
+            </td>
+          </tr>
+          <tr>
+            <td><code>console.log(e.key)</code></td>
+            <td>
+              Cách debug kinh điển để xem chính xác tên phím JS nhận diện là gì
+            </td>
+          </tr>
+        </table>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          📋 Tổng kết — 4 kỹ thuật hội tụ trong bài Modal
+        </h4>
+        <div class="pill-row">
+          <span class="pill"
+            >1️⃣ classList.add/remove — ẩn hiện qua CSS class, không xoá phần tử
+            khỏi DOM</span
+          >
+          <span class="pill"
+            >2️⃣ Vòng lặp qua NodeList — gắn cùng 1 listener cho nhiều phần tử
+            cùng lúc</span
+          >
+          <span class="pill"
+            >3️⃣ Nhiều cách kích hoạt cùng 1 hành động — nút X, click overlay,
+            phím Escape đều gọi chung closeModal()</span
+          >
+          <span class="pill"
+            >4️⃣ Guard condition — kiểm tra điều kiện trước khi hành động, tránh
+            gọi hàm thừa</span
+          >
+        </div>
+      </div>
+
+      <!-- 12. GUESS MY NUMBER PROJECT -->
+      <div class="topic c-yellow" id="guessnumber">
+        <div class="topic-head">
+          <div class="topic-num">12</div>
+          <div>
+            <h3>🔢 Dự án thực hành: Guess My Number</h3>
+            <div class="sub">
+              Game đoán số kinh điển — ráp state, event, kiểu dữ liệu và style
+              qua JS vào 1 sản phẩm
+            </div>
+          </div>
+        </div>
+
+        <p style="color: var(--ink-soft); font-size: 0.92rem">
+          Máy random 1 số bí mật từ 1-20, người chơi có 20 điểm, đoán sai bị trừ
+          điểm, đoán đúng thì thắng và có cơ hội phá kỷ lục (highscore).
+        </p>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 22px"
+        >
+          1️⃣ State &amp; số bí mật
+        </h4>
+        <pre
+          class="code"
+        ><span class="c-key">const</span> secretNumber = Math.trunc(Math.random() * <span class="c-num">20</span>) + <span class="c-num">1</span>;
+<span class="c-key">let</span> score = <span class="c-num">20</span>;
+<span class="c-key">let</span> highscore = <span class="c-num">0</span>;</pre>
+        <div class="pill-row">
+          <span class="pill"
+            >💡 secretNumber dùng const vì chỉ random 1 LẦN DUY NHẤT lúc load
+            trang, không đổi trong suốt ván chơi</span
+          >
+          <span class="pill"
+            >💡 score, highscore dùng let vì bị GÁN LẠI liên tục mỗi lượt
+            đoán</span
+          >
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          2️⃣ ⚠️ Điểm cần lưu ý — chưa lưu phần tử vào biến
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Bài này gọi <code>document.querySelector('.message')</code> lặp lại
+          RẤT NHIỀU LẦN thay vì lưu vào biến 1 lần — đúng cái bẫy đã học ở phần
+          Refactoring (nhánh DOM). Đây là điểm đầu tiên nên sửa nếu muốn code
+          sạch hơn:
+        </p>
+        <div class="grid2">
+          <div class="info-card">
+            <h4>❌ Cách bài đang làm</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            >document.querySelector(<span class="c-str">'.message'</span>)
+  .textContent = <span class="c-str">'No number'</span>;
+document.querySelector(<span class="c-str">'.score'</span>)
+  .textContent = score;
+<span class="c-com">// lặp lại querySelector ở MỌI nhánh if</span></pre>
+          </div>
+          <div class="info-card">
+            <h4>✅ Nên refactor thành</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">const</span> messageEl = document.querySelector(<span class="c-str">'.message'</span>);
+<span class="c-key">const</span> scoreEl = document.querySelector(<span class="c-str">'.score'</span>);
+<span class="c-com">// khai báo 1 lần ở đầu file, dùng lại khắp nơi</span>
+messageEl.textContent = <span class="c-str">'No number'</span>;
+scoreEl.textContent = score;</pre>
+          </div>
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          3️⃣ Kiểm tra input rỗng — toán tử <code>!</code> với falsy value
+        </h4>
+        <pre
+          class="code"
+        ><span class="c-key">const</span> guess = Number(document.querySelector(<span class="c-str">'.guess'</span>).value);
+
+<span class="c-key">if</span> (!guess) {
+  messageEl.textContent = <span class="c-str">'No number'</span>;
+}</pre>
+        <div class="example-box">
+          <b>Vì sao <code>!guess</code> bắt được ô input rỗng?</b> Nếu người
+          dùng chưa nhập gì, <code>.value</code> trả về chuỗi rỗng
+          <code>""</code>, qua <code>Number("")</code> thành <code>0</code>. Nhớ
+          lại nhánh Kiểu dữ liệu: <code>0</code> là 1 trong 5 giá trị
+          <b>falsy</b>, nên <code>!0</code> → <code>true</code> → vào đúng nhánh
+          "No number". Nếu người dùng gõ chữ (không phải số),
+          <code>Number("abc")</code> → <code>NaN</code>, mà
+          <code>NaN</code> cũng là falsy → vẫn bắt được lỗi này!
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          4️⃣ Đổi CSS trực tiếp qua JS khi thắng
+        </h4>
+        <pre
+          class="code"
+        ><span class="c-key">} </span><span class="c-key">else if</span> (guess === secretNumber) {
+  messageEl.textContent = <span class="c-str">'Correct Number!'</span>;
+  document.querySelector(<span class="c-str">'body'</span>).style.backgroundColor = <span class="c-str">'#60b347'</span>;
+  document.querySelector(<span class="c-str">'.number'</span>).style.width = <span class="c-str">'30rem'</span>;
+
+  <span class="c-key">if</span> (score > highscore) {
+    highscore = score;
+    document.querySelector(<span class="c-str">'.highscore'</span>).textContent = highscore;
+  }
+}</pre>
+        <div class="pill-row">
+          <span class="pill"
+            >💡 .style.backgroundColor — CSS "background-color" viết thành
+            camelCase khi truy cập qua JS (bỏ dấu gạch ngang, viết hoa chữ cái
+            sau)</span
+          >
+          <span class="pill"
+            >💡 Đây chính là property đã học ở nhánh Attribute vs Property —
+            .style là 1 object sống, đổi ngay lập tức trên trang</span
+          >
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          5️⃣ Đoán sai — gộp nhánh Too high / Too low
+        </h4>
+        <pre
+          class="code"
+        ><span class="c-key">} </span><span class="c-key">else if</span> (guess !== secretNumber) {
+  <span class="c-key">if</span> (score > <span class="c-num">1</span>) {
+    messageEl.textContent = guess > secretNumber ? <span class="c-str">'Too high!'</span> : <span class="c-str">'To Low'</span>;
+    score--;
+    scoreEl.textContent = score;
+  } <span class="c-key">else</span> {
+    messageEl.textContent = <span class="c-str">'You lost the game!'</span>;
+    scoreEl.textContent = <span class="c-num">0</span>;
+  }
+}</pre>
+        <div class="example-box">
+          <b>🐛 Lỗi chính tả thật trong bài — "To Low" thiếu chữ "o":</b> Đúng
+          ra phải là <code>'Too low!'</code>. Code vẫn CHẠY ĐÚNG (không lỗi cú
+          pháp) vì đây chỉ là chuỗi hiển thị, nhưng người chơi sẽ thấy chữ sai
+          chính tả trên màn hình. Đây là lỗi rất hay gặp: JS không thể tự phát
+          hiện lỗi chính tả trong 1 chuỗi văn bản — phải tự đọc kỹ hoặc test
+          bằng mắt.
+        </div>
+
+        <div class="example-box">
+          <b>🔗 Liên hệ với bài Refactoring đã học:</b> đoạn code comment ở cuối
+          file gốc (2 nhánh <code>else if (guess &gt; secretNumber)</code> và
+          <code>else if (guess &lt; secretNumber)</code> riêng biệt) chính là
+          PHIÊN BẢN CHƯA REFACTOR — gộp lại thành 1 nhánh
+          <code>guess !== secretNumber</code> kèm toán tử 3 ngôi như code hiện
+          tại chính là ví dụ thực chiến của kỹ thuật "gộp điều kiện trùng lặp"
+          đã học.
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          6️⃣ ⚠️ Tính năng còn thiếu — nút "Again!"
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          HTML có sẵn
+          <code>&lt;button class="btn again"&gt;Again!&lt;/button&gt;</code>
+          nhưng file JS <b>chưa có</b> đoạn <code>addEventListener</code> nào
+          gắn cho nút này — game hiện tại chơi xong không có cách nào chơi lại
+          mà không load lại trang.
+        </p>
+        <pre
+          class="code"
+        ><span class="c-com">// Cần thêm: hàm reset giống init() trong Pig Game</span>
+<span class="c-key">const</span> btnAgain = document.querySelector(<span class="c-str">'.again'</span>);
+
+btnAgain.addEventListener(<span class="c-str">'click'</span>, <span class="c-key">function</span> () {
+  score = <span class="c-num">20</span>;
+  <span class="c-com">// cần biến secretNumber ở scope ngoài (let), rồi random lại
+  // secretNumber = Math.trunc(Math.random() * 20) + 1;</span>
+  scoreEl.textContent = score;
+  messageEl.textContent = <span class="c-str">'Start guessing...'</span>;
+  document.querySelector(<span class="c-str">'.number'</span>).textContent = <span class="c-str">'?'</span>;
+  document.querySelector(<span class="c-str">'body'</span>).style.backgroundColor = <span class="c-str">'#222'</span>;
+  document.querySelector(<span class="c-str">'.number'</span>).style.width = <span class="c-str">'15rem'</span>;
+});</pre>
+        <div class="example-box">
+          <b>⚠️ Bẫy nếu sửa lại:</b> muốn random lại
+          <code>secretNumber</code> khi bấm "Again!", biến này phải khai báo
+          bằng <code>let</code> thay vì <code>const</code> — giống hệt lưu ý ở
+          Pig Game: biến nào cần đổi giá trị qua nhiều lần chơi thì không thể
+          dùng <code>const</code>.
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          📋 Tổng kết — những điều bài này ôn lại
+        </h4>
+        <table class="spec">
+          <tr>
+            <th>Kỹ thuật</th>
+            <th>Xuất hiện ở đâu trong bài</th>
+          </tr>
+          <tr>
+            <td>
+              Falsy value (<code>0</code>, <code>NaN</code>, <code>""</code>)
+            </td>
+            <td>
+              <code>if (!guess)</code> — bắt input rỗng hoặc không phải số
+            </td>
+          </tr>
+          <tr>
+            <td>Type Conversion</td>
+            <td>
+              <code>Number(input.value)</code> — ép chuỗi từ input thành số
+            </td>
+          </tr>
+          <tr>
+            <td>Toán tử 3 ngôi</td>
+            <td><code>guess > secretNumber ? 'Too high!' : 'To Low'</code></td>
+          </tr>
+          <tr>
+            <td>DOM — đổi style qua JS</td>
+            <td>
+              <code>element.style.backgroundColor</code>,
+              <code>element.style.width</code>
+            </td>
+          </tr>
+          <tr>
+            <td>Refactoring</td>
+            <td>
+              Gộp 2 nhánh Too high/Too low; nên cache querySelector vào biến
+            </td>
+          </tr>
+          <tr>
+            <td>State variable</td>
+            <td>
+              <code>score</code>, <code>highscore</code> — cần
+              <code>let</code> vì bị gán lại
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot-card">
+        <h3>🎯 Ôn lại nhanh trước khi ngủ</h3>
+        <p>
+          Biến lưu giá trị · Kiểu dữ liệu quyết định giá trị đó là gì · Toán tử
+          xử lý giá trị · Cấu trúc điều khiển ra quyết định · Hàm đóng gói logic
+          để tái sử dụng · Mảng lưu nhiều giá trị cùng lúc · Vòng lặp tự động
+          hoá việc lặp lại · DOM là cầu nối để JS đọc/sửa trang HTML đang chạy ·
+          Attribute là giá trị HTML gốc còn Property là trạng thái DOM hiện tại
+          · Pig Game, Modal Window và Guess My Number là nơi ráp tất cả lại
+          thành sản phẩm hoàn chỉnh. Quay lại bản đồ tư duy bất cứ khi nào cần
+          ôn nhanh — hoặc bấm nút bên dưới để chuyển bài học!
+        </p>
+        <div
+          style="
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+          "
+        >
+          <a
+            href="index.html"
+            class="switch-btn"
+            style="display: inline-flex; background: rgba(44, 42, 58, 0.85)"
+            >🟩 Bài HTML/CSS <span class="arrow">→</span></a
+          >
+          <a
+            href="upweb-landing-page.html"
+            class="switch-btn"
+            style="display: inline-flex; background: rgba(44, 42, 58, 0.85)"
+            >🟪 Bài Up Web <span class="arrow">→</span></a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <a href="#top" class="back-top" id="backTop">↑</a>
+
+    <script>
+      const backTop = document.getElementById("backTop");
+      window.addEventListener("scroll", () => {
+        backTop.classList.toggle("show", window.scrollY > 500);
+      });
+
+      const links = document.querySelectorAll(".nav-links a");
+      const topics = document.querySelectorAll(".topic, #mindmap");
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              links.forEach((l) => {
+                const active = l.getAttribute("href") === "#" + id;
+                l.style.background = active ? "#2c2a3a" : "";
+                l.style.color = active ? "#fff" : "";
+              });
+            }
+          });
+        },
+        { rootMargin: "-40% 0px -50% 0px" },
+      );
+      topics.forEach((t) => obs.observe(t));
+    </script>
+  </body>
+</html>
