@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JavaScript Cơ Bản — Bản Đồ Kiến Thức</title>
+    <title>HTML-CSS Cơ Bản — Bản Đồ Kiến Thức</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
@@ -302,7 +302,7 @@
         position: relative;
         max-width: 920px;
         margin: 0 auto;
-        min-height: 940px;
+        min-height: 980px;
       }
       .mm-center {
         position: absolute;
@@ -368,93 +368,100 @@
       }
 
       .mm-node.n1 {
-        top: 4.8%;
+        top: 6.1%;
         left: 39.7%;
       }
       .mm-node.n1 .num {
         background: var(--blue);
       }
       .mm-node.n2 {
-        top: 9.8%;
-        left: 59.2%;
+        top: 10.3%;
+        left: 58.1%;
       }
       .mm-node.n2 .num {
         background: var(--teal);
       }
       .mm-node.n3 {
-        top: 23.4%;
-        left: 73.6%;
+        top: 21.8%;
+        left: 72.3%;
       }
       .mm-node.n3 .num {
         background: var(--yellow);
         color: var(--ink);
       }
       .mm-node.n4 {
-        top: 42%;
-        left: 78.8%;
+        top: 38%;
+        left: 79%;
       }
       .mm-node.n4 .num {
         background: var(--rose);
       }
       .mm-node.n5 {
-        top: 60.6%;
-        left: 73.6%;
+        top: 55.2%;
+        left: 76.7%;
       }
       .mm-node.n5 .num {
         background: var(--pink);
         color: var(--ink);
       }
       .mm-node.n6 {
-        top: 74.3%;
-        left: 59.2%;
+        top: 69.5%;
+        left: 65.9%;
       }
       .mm-node.n6 .num {
         background: var(--blue);
       }
       .mm-node.n7 {
-        top: 79.3%;
-        left: 39.7%;
+        top: 77.5%;
+        left: 49.1%;
       }
       .mm-node.n7 .num {
         background: var(--teal);
       }
       .mm-node.n8 {
-        top: 74.3%;
-        left: 20.1%;
+        top: 77.5%;
+        left: 30.2%;
       }
       .mm-node.n8 .num {
         background: var(--yellow);
         color: var(--ink);
       }
       .mm-node.n9 {
-        top: 60.6%;
-        left: 5.8%;
+        top: 69.5%;
+        left: 13.4%;
       }
       .mm-node.n9 .num {
         background: var(--rose);
       }
       .mm-node.n10 {
-        top: 42%;
-        left: 0.5%;
+        top: 55.2%;
+        left: 2.6%;
       }
       .mm-node.n10 .num {
         background: var(--pink);
         color: var(--ink);
       }
       .mm-node.n11 {
-        top: 23.4%;
-        left: 5.8%;
+        top: 38%;
+        left: 0.3%;
       }
       .mm-node.n11 .num {
         background: var(--teal);
       }
       .mm-node.n12 {
-        top: 9.8%;
-        left: 20.1%;
+        top: 21.8%;
+        left: 7%;
       }
       .mm-node.n12 .num {
         background: var(--yellow);
         color: var(--ink);
+      }
+      .mm-node.n13 {
+        top: 10.3%;
+        left: 21.3%;
+      }
+      .mm-node.n13 .num {
+        background: var(--rose);
       }
 
       .mindmap svg {
@@ -547,6 +554,16 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 18px;
+      }
+      .grid3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      @media (max-width: 760px) {
+        .grid3 {
+          grid-template-columns: 1fr;
+        }
       }
       @media (max-width: 760px) {
         .grid2 {
@@ -857,6 +874,7 @@
         <div class="nav-logo"><span class="dot"></span> JS Cơ Bản</div>
         <div class="nav-links">
           <a href="#mindmap">Bản đồ</a>
+          <a href="#nhungjs">Nhúng JS vào HTML</a>
           <a href="#bien">Biến</a>
           <a href="#kieudl">Kiểu DL</a>
           <a href="#toantu">Toán tử</a>
@@ -924,118 +942,127 @@ console.<span class="c-fn">log</span>(greet(user));
         <span class="kicker">Mind map</span>
         <h2>Toàn cảnh bài học trong 1 bức tranh</h2>
         <p>
-          12 nhánh kiến thức chính — bấm vào từng nhánh để đọc chi tiết bên
+          13 nhánh kiến thức chính — bấm vào từng nhánh để đọc chi tiết bên
           dưới.
         </p>
       </div>
 
       <div class="mindmap-wrap">
         <div class="mindmap">
-          <svg viewBox="0 0 920 940" preserveAspectRatio="none">
+          <svg viewBox="0 0 920 980" preserveAspectRatio="none">
             <line
               x1="460"
-              y1="450"
+              y1="470"
               x2="460"
-              y2="100"
+              y2="115"
               stroke="#9ac5e5"
               stroke-width="2.5"
               stroke-dasharray="5 5"
             />
             <line
               x1="460"
-              y1="450"
-              x2="640"
-              y2="146.9"
+              y1="470"
+              x2="629.1"
+              y2="155.4"
               stroke="#4fb19d"
               stroke-width="2.5"
               stroke-dasharray="5 5"
             />
             <line
               x1="460"
-              y1="450"
-              x2="771.8"
-              y2="275"
+              y1="470"
+              x2="760.4"
+              y2="268.4"
               stroke="#edce7a"
               stroke-width="2.5"
               stroke-dasharray="5 5"
             />
             <line
               x1="460"
-              y1="450"
-              x2="820"
-              y2="450"
+              y1="470"
+              x2="822.3"
+              y2="427.2"
               stroke="#c98c9a"
               stroke-width="2.5"
               stroke-dasharray="5 5"
             />
             <line
               x1="460"
-              y1="450"
-              x2="771.8"
-              y2="625"
+              y1="470"
+              x2="801.3"
+              y2="595.9"
               stroke="#e5c6c3"
               stroke-width="2.5"
               stroke-dasharray="5 5"
             />
             <line
               x1="460"
-              y1="450"
-              x2="640"
-              y2="753.1"
+              y1="470"
+              x2="701.9"
+              y2="735.9"
               stroke="#9ac5e5"
               stroke-width="2.5"
               stroke-dasharray="5 5"
             />
             <line
               x1="460"
-              y1="450"
-              x2="460"
-              y2="800"
+              y1="470"
+              x2="547.1"
+              y2="814.7"
               stroke="#4fb19d"
               stroke-width="2.5"
               stroke-dasharray="5 5"
             />
             <line
               x1="460"
-              y1="450"
-              x2="280"
-              y2="753.1"
+              y1="470"
+              x2="372.9"
+              y2="814.7"
               stroke="#edce7a"
               stroke-width="2.5"
               stroke-dasharray="5 5"
             />
             <line
               x1="460"
-              y1="450"
-              x2="148.2"
-              y2="625"
+              y1="470"
+              x2="218.1"
+              y2="735.9"
               stroke="#c98c9a"
               stroke-width="2.5"
               stroke-dasharray="5 5"
             />
             <line
               x1="460"
-              y1="450"
-              x2="100"
-              y2="450"
+              y1="470"
+              x2="118.7"
+              y2="595.9"
               stroke="#e5c6c3"
               stroke-width="2.5"
               stroke-dasharray="5 5"
             />
             <line
               x1="460"
-              y1="450"
-              x2="148.2"
-              y2="275"
+              y1="470"
+              x2="97.7"
+              y2="427.2"
+              stroke="#9ac5e5"
+              stroke-width="2.5"
+              stroke-dasharray="5 5"
+            />
+            <line
+              x1="460"
+              y1="470"
+              x2="159.6"
+              y2="268.4"
               stroke="#4fb19d"
               stroke-width="2.5"
               stroke-dasharray="5 5"
             />
             <line
               x1="460"
-              y1="450"
-              x2="280"
-              y2="146.9"
+              y1="470"
+              x2="290.9"
+              y2="155.4"
               stroke="#edce7a"
               stroke-width="2.5"
               stroke-dasharray="5 5"
@@ -1049,63 +1076,68 @@ console.<span class="c-fn">log</span>(greet(user));
             >
           </div>
 
-          <a href="#bien" class="mm-node n1">
+          <a href="#nhungjs" class="mm-node n1">
             <span class="num">1</span>
+            <div class="title">🔗 Nhúng JS vào HTML</div>
+            <div class="desc">Vị trí thẻ script, defer/async</div>
+          </a>
+          <a href="#bien" class="mm-node n2">
+            <span class="num">2</span>
             <div class="title">Biến</div>
             <div class="desc">let, const, var — nơi lưu trữ giá trị</div>
           </a>
-          <a href="#kieudl" class="mm-node n2">
-            <span class="num">2</span>
+          <a href="#kieudl" class="mm-node n3">
+            <span class="num">3</span>
             <div class="title">Kiểu dữ liệu</div>
             <div class="desc">7 kiểu nguyên thủy + chuyển đổi kiểu</div>
           </a>
-          <a href="#toantu" class="mm-node n3">
-            <span class="num">3</span>
+          <a href="#toantu" class="mm-node n4">
+            <span class="num">4</span>
             <div class="title">Toán tử</div>
             <div class="desc">Số học, so sánh, logic, gán, 3 ngôi</div>
           </a>
-          <a href="#dieukhien" class="mm-node n4">
-            <span class="num">4</span>
+          <a href="#dieukhien" class="mm-node n5">
+            <span class="num">5</span>
             <div class="title">Cấu trúc điều khiển</div>
             <div class="desc">if...else, switch, toán tử 3 ngôi</div>
           </a>
-          <a href="#ham" class="mm-node n5">
-            <span class="num">5</span>
+          <a href="#ham" class="mm-node n6">
+            <span class="num">6</span>
             <div class="title">Hàm</div>
             <div class="desc">Declaration, expression, arrow function</div>
           </a>
-          <a href="#mang" class="mm-node n6">
-            <span class="num">6</span>
+          <a href="#mang" class="mm-node n7">
+            <span class="num">7</span>
             <div class="title">Mảng</div>
             <div class="desc">Khai báo, truy cập, các method phổ biến</div>
           </a>
-          <a href="#voonglap" class="mm-node n7">
-            <span class="num">7</span>
+          <a href="#voonglap" class="mm-node n8">
+            <span class="num">8</span>
             <div class="title">Vòng lặp</div>
             <div class="desc">for, while, do...while, break/continue</div>
           </a>
-          <a href="#dom" class="mm-node n8">
-            <span class="num">8</span>
-            <div class="title">DOM</div>
-            <div class="desc">Chọn, đọc/sửa, tạo/xoá phần tử, sự kiện</div>
-          </a>
-          <a href="#attrprop" class="mm-node n9">
+          <a href="#dom" class="mm-node n9">
             <span class="num">9</span>
+            <div class="title">DOM</div>
+            <div class="desc">Chọn, sự kiện, bubbling, RegExp</div>
+          </a>
+          <a href="#attrprop" class="mm-node n10">
+            <span class="num">10</span>
             <div class="title">Attribute vs Property</div>
             <div class="desc">Phân biệt 2 khái niệm hay bị nhầm</div>
           </a>
-          <a href="#piggame" class="mm-node n10">
-            <span class="num">10</span>
+          <a href="#piggame" class="mm-node n11">
+            <span class="num">11</span>
             <div class="title">🎲 Dự án: Pig Game</div>
             <div class="desc">Thực hành DOM + state + event listener</div>
           </a>
-          <a href="#modal" class="mm-node n11">
-            <span class="num">11</span>
+          <a href="#modal" class="mm-node n12">
+            <span class="num">12</span>
             <div class="title">🪟 Dự án: Modal Window</div>
             <div class="desc">NodeList loop, overlay, phím Escape</div>
           </a>
-          <a href="#guessnumber" class="mm-node n12">
-            <span class="num">12</span>
+          <a href="#guessnumber" class="mm-node n13">
+            <span class="num">13</span>
             <div class="title">🔢 Dự án: Guess My Number</div>
             <div class="desc">State, kiểm tra input, style qua JS</div>
           </a>
@@ -1114,10 +1146,205 @@ console.<span class="c-fn">log</span>(greet(user));
     </section>
 
     <section id="chi-tiet" style="padding-top: 10px">
-      <!-- 1. BIẾN -->
-      <div class="topic c-blue" id="bien">
+      <!-- 1. NHUNG JS VAO HTML -->
+      <div class="topic c-rose" id="nhungjs">
         <div class="topic-head">
           <div class="topic-num">1</div>
+          <div>
+            <h3>🔗 Nhúng JavaScript vào HTML</h3>
+            <div class="sub">
+              Đặt thẻ &lt;script&gt; ở đâu, khi nào — quyết định code chạy đúng
+              hay báo lỗi
+            </div>
+          </div>
+        </div>
+
+        <p style="color: var(--ink-soft); font-size: 0.92rem">
+          Tất cả dự án ở trên đều dùng file JS riêng, liên kết vào HTML qua thẻ
+          <code>&lt;script src="..."&gt;&lt;/script&gt;</code>. Nhưng đặt thẻ
+          này SAI VỊ TRÍ là nguyên nhân phổ biến nhất khiến người mới học thấy
+          lỗi <code>"Cannot read properties of null"</code>.
+        </p>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 22px"
+        >
+          1️⃣ Vì sao vị trí thẻ script quan trọng?
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Trình duyệt đọc HTML <b>từ trên xuống dưới, theo thứ tự</b>. Nếu
+          <code>&lt;script&gt;</code> nằm ở đầu trang (trong
+          <code>&lt;head&gt;</code>) và chạy ngay, JS sẽ cố tìm các phần tử HTML
+          <b>CHƯA ĐƯỢC TẠO RA</b> — vì trình duyệt chưa đọc tới phần
+          <code>&lt;body&gt;</code> bên dưới.
+        </p>
+        <pre class="code">&lt;head&gt;
+  &lt;script src=<span class="c-str">"script.js"</span>&gt;&lt;/script&gt;   <span class="c-com">// ❌ chạy TRƯỚC khi &lt;body&gt; tồn tại</span>
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button class=<span class="c-str">"check"</span>&gt;Check!&lt;/button&gt;
+&lt;/body&gt;
+
+<span class="c-com">// script.js</span>
+document.querySelector(<span class="c-str">'.check'</span>).addEventListener(...);
+<span class="c-com">// → Uncaught TypeError: Cannot read properties of null
+// vì document.querySelector('.check') trả về null — nút .check chưa tồn tại lúc này!</span></pre>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          2️⃣ Cách kinh điển — đặt script ở CUỐI &lt;body&gt;
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Đây chính là cách tất cả dự án ở trên (Pig Game, Modal Window, Guess
+          My Number) đang dùng — đặt <code>&lt;script&gt;</code> ngay TRƯỚC thẻ
+          đóng <code>&lt;/body&gt;</code>, để lúc đó toàn bộ HTML phía trên đã
+          được trình duyệt đọc và dựng xong.
+        </p>
+        <pre class="code">&lt;body&gt;
+  &lt;header&gt;...&lt;/header&gt;
+  &lt;main&gt;
+    &lt;button class=<span class="c-str">"check"</span>&gt;Check!&lt;/button&gt;
+  &lt;/main&gt;
+
+  <span class="c-com">&lt;!-- Đặt ở đây — SAU khi mọi phần tử HTML đã tồn tại --&gt;</span>
+  &lt;script src=<span class="c-str">"script.js"</span>&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <div class="example-box">
+          <b>Ví dụ dễ hiểu:</b> giống việc bạn phải xây xong cả căn nhà (HTML)
+          rồi mới lắp công tắc điện và kết nối dây điện (JS) — nếu lắp công tắc
+          trước khi tường được xây, bạn sẽ nối dây vào "khoảng không" chẳng có
+          gì cả.
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          3️⃣ Cách hiện đại — giữ script trong &lt;head&gt; kèm defer
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Cách này ngày càng phổ biến: vẫn để <code>&lt;script&gt;</code> trong
+          <code>&lt;head&gt;</code>, nhưng thêm thuộc tính <code>defer</code> —
+          trình duyệt tải file JS song song lúc đọc HTML, nhưng CHỈ THỰC THI sau
+          khi toàn bộ HTML đã dựng xong.
+        </p>
+        <pre class="code">&lt;head&gt;
+  &lt;script src=<span class="c-str">"script.js"</span> defer&gt;&lt;/script&gt;   <span class="c-com">// ✅ tải song song, chạy sau cùng</span>
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button class=<span class="c-str">"check"</span>&gt;Check!&lt;/button&gt;
+&lt;/body&gt;</pre>
+        <div class="pill-row">
+          <span class="pill"
+            >⚡ defer giúp trang tải nhanh hơn: trình duyệt không phải dừng đọc
+            HTML để tải xong JS mới đọc tiếp</span
+          >
+          <span class="pill"
+            >✅ Nhiều script defer sẽ chạy đúng theo THỨ TỰ khai báo trong
+            HTML</span
+          >
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          4️⃣ async — khác defer ở điểm nào?
+        </h4>
+        <pre
+          class="code"
+        >&lt;script src=<span class="c-str">"analytics.js"</span> async&gt;&lt;/script&gt;</pre>
+        <table class="spec">
+          <tr>
+            <th>Thuộc tính</th>
+            <th>Tải file</th>
+            <th>Thời điểm chạy</th>
+            <th>Thứ tự nhiều script</th>
+          </tr>
+          <tr>
+            <td>(không có gì)</td>
+            <td>Dừng đọc HTML để tải</td>
+            <td>Ngay khi tải xong</td>
+            <td>Đúng thứ tự</td>
+          </tr>
+          <tr>
+            <td><code>defer</code></td>
+            <td>Tải song song, không chặn HTML</td>
+            <td>Sau khi HTML dựng xong</td>
+            <td>Đúng thứ tự</td>
+          </tr>
+          <tr>
+            <td><code>async</code></td>
+            <td>Tải song song, không chặn HTML</td>
+            <td>Ngay khi tải xong (có thể TRƯỚC khi HTML xong)</td>
+            <td>KHÔNG đảm bảo thứ tự</td>
+          </tr>
+        </table>
+        <div class="pill-row">
+          <span class="pill"
+            >💡 defer → dùng cho script cần thao tác DOM (như các dự án ở
+            trên)</span
+          >
+          <span class="pill"
+            >💡 async → dùng cho script độc lập, không liên quan DOM (vd: Google
+            Analytics, quảng cáo)</span
+          >
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          📋 Bảng tổng kết — nên chọn cách nào?
+        </h4>
+        <table class="spec">
+          <tr>
+            <th>Cách đặt</th>
+            <th>Khi nào dùng</th>
+          </tr>
+          <tr>
+            <td>Cuối <code>&lt;body&gt;</code>, không thuộc tính</td>
+            <td>
+              Đơn giản, dễ hiểu nhất cho người mới — cách các dự án trong bài
+              này đang dùng
+            </td>
+          </tr>
+          <tr>
+            <td><code>&lt;head&gt;</code> + <code>defer</code></td>
+            <td>
+              Cách hiện đại, được khuyên dùng trong dự án thực tế — HTML rõ ràng
+              hơn vì mọi thẻ script gom ở đầu file
+            </td>
+          </tr>
+          <tr>
+            <td><code>&lt;head&gt;</code> + <code>async</code></td>
+            <td>
+              Chỉ dùng cho script không đụng tới DOM (analytics, ads, font
+              loader...)
+            </td>
+          </tr>
+          <tr>
+            <td><code>&lt;head&gt;</code>, không thuộc tính</td>
+            <td>
+              ❌ Tránh — nguyên nhân phổ biến nhất gây lỗi "Cannot read
+              properties of null"
+            </td>
+          </tr>
+        </table>
+
+        <div class="example-box">
+          <b>🔗 Liên hệ thực tế:</b> nếu mở lại code của Pig Game, Modal Window
+          hay Guess My Number, bạn sẽ thấy tất cả đều đặt
+          <code>&lt;script src="script.js"&gt;&lt;/script&gt;</code> ngay trước
+          <code>&lt;/body&gt;</code> — đây không phải ngẫu nhiên, mà là quy tắc
+          bắt buộc để <code>document.querySelector(...)</code> luôn tìm thấy
+          đúng phần tử cần thao tác.
+        </div>
+      </div>
+
+      <!-- 2. BIEN -->
+      <div class="topic c-blue" id="bien">
+        <div class="topic-head">
+          <div class="topic-num">2</div>
           <div>
             <h3>Biến (Variables)</h3>
             <div class="sub">
@@ -1199,10 +1426,10 @@ dog.name = <span class="c-str">"Rex"</span>;       <span class="c-com">// ✅ OK
         </table>
       </div>
 
-      <!-- 2. KIEU DU LIEU -->
+      <!-- 3. KIEU DU LIEU -->
       <div class="topic c-teal" id="kieudl">
         <div class="topic-head">
-          <div class="topic-num">2</div>
+          <div class="topic-num">3</div>
           <div>
             <h3>Kiểu dữ liệu &amp; Chuyển đổi kiểu</h3>
             <div class="sub">
@@ -1336,10 +1563,10 @@ console.<span class="c-fn">log</span>(<span class="c-num">5</span> - <span class
         </div>
       </div>
 
-      <!-- 3. TOAN TU -->
+      <!-- 4. TOAN TU -->
       <div class="topic c-yellow" id="toantu">
         <div class="topic-head">
-          <div class="topic-num">3</div>
+          <div class="topic-num">4</div>
           <div>
             <h3>Toán tử (Operators)</h3>
             <div class="sub">
@@ -1438,10 +1665,10 @@ console.<span class="c-fn">log</span>(drink);   <span class="c-com">// "🍷 win
         </div>
       </div>
 
-      <!-- 4. CAU TRUC DIEU KHIEN -->
+      <!-- 5. CAU TRUC DIEU KHIEN -->
       <div class="topic c-rose" id="dieukhien">
         <div class="topic-head">
-          <div class="topic-num">4</div>
+          <div class="topic-num">5</div>
           <div>
             <h3>Cấu trúc điều khiển</h3>
             <div class="sub">
@@ -1553,10 +1780,10 @@ console.<span class="c-fn">log</span>(drink);   <span class="c-com">// "🍷 win
         </div>
       </div>
 
-      <!-- 5. HAM -->
+      <!-- 6. HAM -->
       <div class="topic c-pink" id="ham">
         <div class="topic-head">
-          <div class="topic-num">5</div>
+          <div class="topic-num">6</div>
           <div>
             <h3>Hàm (Functions)</h3>
             <div class="sub">
@@ -1631,10 +1858,10 @@ calcAge(<span class="c-num">2000</span>);   <span class="c-com">// 26 — gọn 
         </p>
       </div>
 
-      <!-- 6. MANG -->
+      <!-- 7. MANG -->
       <div class="topic c-blue" id="mang">
         <div class="topic-head">
-          <div class="topic-num">6</div>
+          <div class="topic-num">7</div>
           <div>
             <h3>Mảng (Array)</h3>
             <div class="sub">
@@ -1865,10 +2092,10 @@ nums.push(<span class="c-num">4</span>);        <span class="c-com">// ✅ OK �
 nums = [<span class="c-num">9</span>, <span class="c-num">9</span>];   <span class="c-com">// ❌ Lỗi! không được gán lại cả biến const</span></pre>
       </div>
 
-      <!-- 7. VONG LAP -->
+      <!-- 8. VONG LAP -->
       <div class="topic c-teal" id="voonglap">
         <div class="topic-head">
-          <div class="topic-num">7</div>
+          <div class="topic-num">8</div>
           <div>
             <h3>Vòng lặp (Loops)</h3>
             <div class="sub">
@@ -2280,10 +2507,10 @@ calcAverage([<span class="c-num">44</span>, <span class="c-num">23</span>, <span
         </table>
       </div>
 
-      <!-- 8. DOM -->
+      <!-- 9. DOM -->
       <div class="topic c-rose" id="dom">
         <div class="topic-head">
-          <div class="topic-num">8</div>
+          <div class="topic-num">9</div>
           <div>
             <h3>DOM (Document Object Model)</h3>
             <div class="sub">
@@ -2380,6 +2607,48 @@ document
         </div>
 
         <h4
+          style="
+            font-family: &quot;Baloo 2&quot;, sans-serif;
+            margin-top: 22px;
+            font-size: 1rem;
+          "
+        >
+          querySelector() vs querySelectorAll()
+        </h4>
+        <div class="grid2">
+          <div class="info-card">
+            <h4>querySelector()</h4>
+            <ul>
+              <li>Trả về element <b>đầu tiên</b> khớp</li>
+              <li>Trả về <code>null</code> nếu không tìm thấy</li>
+              <li>Kết quả là 1 đối tượng duy nhất</li>
+              <li>Phù hợp khi biết chắc chỉ có 1 element</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h4>querySelectorAll()</h4>
+            <ul>
+              <li>Trả về <b>tất cả</b> element khớp</li>
+              <li>Luôn trả về NodeList (dù rỗng)</li>
+              <li>Kết quả là 1 collection duyệt được bằng forEach/for</li>
+              <li>Phù hợp khi cần thao tác với nhiều element</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <b>📝 Mini Challenge:</b> Viết code để chọn tất cả button có class
+          <code>"action-btn"</code> và thay đổi text của chúng thành
+          <code>"Click me!"</code>
+          <pre
+            class="code"
+            style="margin-top: 10px"
+          >document.querySelectorAll(<span class="c-str">".action-btn"</span>).forEach(btn => {
+  btn.textContent = <span class="c-str">"Click me!"</span>;
+});</pre>
+        </div>
+
+        <h4
           style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
         >
           2️⃣ Đọc &amp; sửa nội dung
@@ -2453,12 +2722,73 @@ newLi.remove();</pre>
         >
           6️⃣ Sự kiện — addEventListener
         </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Trình duyệt luôn "lắng nghe" hành động của người dùng thông qua
+          <b>Event Loop</b>. Khi sự kiện xảy ra (click, scroll, keypress...), hệ
+          thống sẽ kích hoạt hàm xử lý tương ứng đã đăng ký.
+        </p>
         <pre
           class="code"
         ><span class="c-key">const</span> button = document.querySelector(<span class="c-str">"button"</span>);
 button.addEventListener(<span class="c-str">"click"</span>, <span class="c-key">function</span> () {
   console.<span class="c-fn">log</span>(<span class="c-str">"Đã click!"</span>);
 });</pre>
+
+        <h4
+          style="
+            font-family: &quot;Baloo 2&quot;, sans-serif;
+            margin-top: 18px;
+            font-size: 1rem;
+          "
+        >
+          Cú pháp cơ bản — 3 tham số
+        </h4>
+        <div class="grid3">
+          <div class="info-card">
+            <h4>element</h4>
+            <p>Phần tử DOM cần gắn sự kiện</p>
+          </div>
+          <div class="info-card">
+            <h4>event</h4>
+            <p>
+              Loại sự kiện dạng chuỗi: <code>'click'</code>,
+              <code>'mouseover'</code>, <code>'keydown'</code>...
+            </p>
+          </div>
+          <div class="info-card">
+            <h4>callback</h4>
+            <p>Hàm được gọi khi sự kiện xảy ra</p>
+          </div>
+        </div>
+
+        <h4
+          style="
+            font-family: &quot;Baloo 2&quot;, sans-serif;
+            margin-top: 18px;
+            font-size: 1rem;
+          "
+        >
+          Quy trình 3 bước xử lý sự kiện
+        </h4>
+        <table class="spec">
+          <tr>
+            <th>Bước</th>
+            <th>Việc cần làm</th>
+          </tr>
+          <tr>
+            <td>1. Lựa chọn Element</td>
+            <td>Truy cập DOM để tìm phần tử cần theo dõi (querySelector...)</td>
+          </tr>
+          <tr>
+            <td>2. Thêm Event Listener</td>
+            <td>Gắn hàm xử lý sự kiện bằng addEventListener</td>
+          </tr>
+          <tr>
+            <td>3. Xử lý Logic</td>
+            <td>Viết code phản hồi: đổi UI, gọi API, cập nhật dữ liệu...</td>
+          </tr>
+        </table>
+
         <div class="grid2" style="margin-top: 12px">
           <div class="info-card">
             <h4>Ví dụ thực tế 1 — nút "Back to top"</h4>
@@ -2536,6 +2866,238 @@ btn.addEventListener(<span class="c-str">"click"</span>, () => {
             <td><code>addEventListener</code></td>
           </tr>
         </table>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          ✅ Best Practices khi viết code DOM
+        </h4>
+        <div class="grid2">
+          <div class="info-card">
+            <h4>📦 Cache DOM Queries</h4>
+            <p>
+              Lưu kết quả query vào biến thay vì truy vấn nhiều lần — đã học ở
+              phần Refactoring bên dưới.
+            </p>
+          </div>
+          <div class="info-card">
+            <h4>🔒 Null Checks</h4>
+            <p>
+              Luôn kiểm tra element có tồn tại trước khi thao tác — tránh lỗi
+              <code>Cannot read properties of null</code>.
+            </p>
+            <pre
+              class="code"
+              style="margin-top: 8px"
+            ><span class="c-key">const</span> btn = document.querySelector(<span class="c-str">".save"</span>);
+<span class="c-key">if</span> (btn) {
+  btn.addEventListener(<span class="c-str">"click"</span>, handleSave);
+}</pre>
+          </div>
+          <div class="info-card">
+            <h4>⚡ Event Delegation</h4>
+            <p>
+              Thêm listener vào phần tử CHA thay vì gắn riêng cho từng phần tử
+              con — đặc biệt hữu ích khi các phần tử con được tạo động
+              (createElement) sau này.
+            </p>
+            <pre
+              class="code"
+              style="margin-top: 8px"
+            ><span class="c-com">// Thay vì gắn listener cho từng &lt;li&gt;
+// gắn 1 lần duy nhất vào &lt;ul&gt; cha</span>
+document.querySelector(<span class="c-str">"ul"</span>).addEventListener(<span class="c-str">"click"</span>, (e) => {
+  <span class="c-key">if</span> (e.target.tagName === <span class="c-str">"LI"</span>) {
+    console.<span class="c-fn">log</span>(<span class="c-str">"Đã click:"</span>, e.target.textContent);
+  }
+});</pre>
+          </div>
+          <div class="info-card">
+            <h4>🧩 Separation of Concerns</h4>
+            <p>
+              Giữ JavaScript, HTML và CSS riêng biệt — JS xử lý logic, HTML là
+              cấu trúc, CSS là giao diện. Tránh viết style trực tiếp qua JS khi
+              có thể dùng classList.
+            </p>
+          </div>
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 26px"
+        >
+          7️⃣ DOM Event — tìm hiểu sâu hơn
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Không chỉ có <code>'click'</code> — trình duyệt hỗ trợ rất nhiều loại
+          sự kiện khác nhau cho từng tình huống tương tác.
+        </p>
+
+        <table class="spec">
+          <tr>
+            <th>Nhóm</th>
+            <th>Sự kiện phổ biến</th>
+            <th>Khi nào bắn ra</th>
+          </tr>
+          <tr>
+            <td>🖱️ Chuột</td>
+            <td>
+              <code>click</code>, <code>dblclick</code>, <code>mouseover</code>,
+              <code>mouseout</code>, <code>mousedown</code>,
+              <code>mouseup</code>
+            </td>
+            <td>Click, rê chuột qua/ra khỏi phần tử, nhấn/thả chuột</td>
+          </tr>
+          <tr>
+            <td>⌨️ Bàn phím</td>
+            <td>
+              <code>keydown</code>, <code>keyup</code>, <code>keypress</code>
+            </td>
+            <td>
+              Nhấn phím xuống, thả phím ra (keypress đã lỗi thời, nên dùng
+              keydown)
+            </td>
+          </tr>
+          <tr>
+            <td>📝 Form</td>
+            <td>
+              <code>submit</code>, <code>input</code>, <code>change</code>,
+              <code>focus</code>, <code>blur</code>
+            </td>
+            <td>
+              Gửi form, gõ chữ vào input, đổi giá trị & rời khỏi input, nhận/mất
+              focus
+            </td>
+          </tr>
+          <tr>
+            <td>🌐 Trang / Cửa sổ</td>
+            <td>
+              <code>load</code>, <code>DOMContentLoaded</code>,
+              <code>resize</code>, <code>scroll</code>
+            </td>
+            <td>
+              Trang tải xong hoàn toàn, HTML dựng xong, đổi kích thước, cuộn
+              trang
+            </td>
+          </tr>
+        </table>
+
+        <h4
+          style="
+            font-family: &quot;Baloo 2&quot;, sans-serif;
+            margin-top: 22px;
+            font-size: 1rem;
+          "
+        >
+          Event Object — tham số "e" chứa gì?
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Mỗi khi callback chạy, trình duyệt tự động truyền vào 1 object chứa
+          toàn bộ thông tin về sự kiện vừa xảy ra.
+        </p>
+        <table class="spec">
+          <tr>
+            <th>Thuộc tính / phương thức</th>
+            <th>Ý nghĩa</th>
+          </tr>
+          <tr>
+            <td><code>e.target</code></td>
+            <td>
+              Phần tử THỰC SỰ bị tác động (vd: đúng cái &lt;li&gt; vừa bấm)
+            </td>
+          </tr>
+          <tr>
+            <td><code>e.currentTarget</code></td>
+            <td>
+              Phần tử đang GẮN listener (vd: &lt;ul&gt; cha nếu dùng event
+              delegation)
+            </td>
+          </tr>
+          <tr>
+            <td><code>e.type</code></td>
+            <td>Tên loại sự kiện, vd <code>"click"</code></td>
+          </tr>
+          <tr>
+            <td><code>e.key</code></td>
+            <td>Phím vừa nhấn (chỉ có ở sự kiện bàn phím)</td>
+          </tr>
+          <tr>
+            <td><code>e.preventDefault()</code></td>
+            <td>Ngăn hành vi mặc định của trình duyệt</td>
+          </tr>
+          <tr>
+            <td><code>e.stopPropagation()</code></td>
+            <td>Dừng sự kiện lan truyền lên các phần tử cha</td>
+          </tr>
+        </table>
+
+        <h4
+          style="
+            font-family: &quot;Baloo 2&quot;, sans-serif;
+            margin-top: 22px;
+            font-size: 1rem;
+          "
+        >
+          preventDefault() — ngăn hành vi mặc định
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Nhiều thẻ HTML có hành vi mặc định khi tương tác — form tự reload
+          trang khi submit, link <code>&lt;a&gt;</code> tự chuyển trang. Muốn tự
+          xử lý bằng JS thay vì để trình duyệt làm mặc định, gọi
+          <code>e.preventDefault()</code>.
+        </p>
+        <pre
+          class="code"
+        >form.addEventListener(<span class="c-str">"submit"</span>, <span class="c-key">function</span> (e) {
+  e.preventDefault();   <span class="c-com">// chặn form tự reload trang</span>
+  console.<span class="c-fn">log</span>(<span class="c-str">"Đã submit, xử lý bằng JS!"</span>);
+});</pre>
+
+        <h4
+          style="
+            font-family: &quot;Baloo 2&quot;, sans-serif;
+            margin-top: 22px;
+            font-size: 1rem;
+          "
+        >
+          Event Bubbling &amp; Capturing — sự kiện "lan truyền"
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          Khi click vào 1 phần tử con, sự kiện không dừng lại ở đó — nó tiếp tục
+          "nổi bọt" (bubble) lên từng phần tử cha, ông, tổ tiên... cho tới
+          <code>document</code>. Đây chính là cơ chế đứng sau
+          <b>Event Delegation</b> đã học ở trên.
+        </p>
+        <pre class="code">&lt;div id=<span class="c-str">"outer"</span>&gt;
+  &lt;button id=<span class="c-str">"inner"</span>&gt;Click tôi&lt;/button&gt;
+&lt;/div&gt;
+
+document.getElementById(<span class="c-str">"outer"</span>).addEventListener(<span class="c-str">"click"</span>, () => {
+  console.<span class="c-fn">log</span>(<span class="c-str">"outer nghe được!"</span>);
+});
+document.getElementById(<span class="c-str">"inner"</span>).addEventListener(<span class="c-str">"click"</span>, () => {
+  console.<span class="c-fn">log</span>(<span class="c-str">"inner nghe được!"</span>);
+});
+<span class="c-com">// Click vào button → in ra CẢ 2 dòng, theo thứ tự inner → outer
+// (sự kiện "nổi bọt" từ trong ra ngoài)</span></pre>
+        <div class="pill-row">
+          <span class="pill"
+            >🛑 Muốn chặn lan truyền lên cha → gọi
+            <code>e.stopPropagation()</code> trong callback của phần tử
+            con</span
+          >
+          <span class="pill"
+            >🔗 Event Delegation hoạt động được chính nhờ cơ chế bubbling
+            này</span
+          >
+        </div>
+
+        <div class="example-box">
+          <b>Ví dụ dễ hiểu:</b> event bubbling giống việc bạn hét lên trong 1
+          căn phòng nhỏ (phần tử con) — âm thanh không chỉ dừng ở phòng đó mà
+          còn vọng ra hành lang (phần tử cha), rồi ra tới sân nhà (document).
+          Muốn "cách âm" để tiếng hét không vọng ra ngoài, gọi
+          <code>stopPropagation()</code>.
+        </div>
 
         <h4
           style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
@@ -2643,12 +3205,310 @@ btnDelete.addEventListener(<span class="c-str">"click"</span>,
           từng tờ. Refactor giống việc gom công thức đó vào đúng 1 cuốn sổ tay
           (hàm dùng chung) — cần sửa gì chỉ mở đúng 1 trang.
         </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 26px"
+        >
+          📐 Nguyên tắc DRY — Đừng Lặp Lại Chính Mình
+        </h4>
+        <div class="grid2">
+          <div class="info-card">
+            <h4>Triết lý DRY</h4>
+            <p>
+              <b>D</b>on't <b>R</b>epeat <b>Y</b>ourself — mỗi phần logic nên
+              được định nghĩa DUY NHẤT trong hệ thống. Tránh copy-paste code.
+            </p>
+          </div>
+          <div class="info-card">
+            <h4>Tại sao quan trọng?</h4>
+            <ul>
+              <li>Dễ bảo trì và cập nhật</li>
+              <li>Giảm lỗi và tăng tính nhất quán</li>
+              <li>Tối ưu bộ nhớ và hiệu suất</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4
+          style="
+            font-family: &quot;Baloo 2&quot;, sans-serif;
+            margin-top: 22px;
+            font-size: 1rem;
+          "
+        >
+          3️⃣ So sánh Bad Code vs Good Code
+        </h4>
+        <div class="grid2">
+          <div class="info-card">
+            <h4>❌ Bad Code (Lặp lại)</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">function</span> updateHeader1() {
+  document.getElementById(<span class="c-str">'header1'</span>)
+    .style.color = <span class="c-str">'red'</span>;
+  document.getElementById(<span class="c-str">'header1'</span>)
+    .style.fontSize = <span class="c-str">'24px'</span>;
+}
+
+<span class="c-key">function</span> updateHeader2() {
+  document.getElementById(<span class="c-str">'header2'</span>)
+    .style.color = <span class="c-str">'red'</span>;
+  document.getElementById(<span class="c-str">'header2'</span>)
+    .style.fontSize = <span class="c-str">'24px'</span>;
+}
+<span class="c-com">// ...lặp lại y hệt cho header3, header4...</span></pre>
+          </div>
+          <div class="info-card">
+            <h4>✅ Good Code (DRY)</h4>
+            <pre
+              class="code"
+              style="margin: 0"
+            ><span class="c-key">function</span> updateHeader(elementId) {
+  <span class="c-key">const</span> header = document.getElementById(elementId);
+  header.style.color = <span class="c-str">'red'</span>;
+  header.style.fontSize = <span class="c-str">'24px'</span>;
+}
+
+<span class="c-com">// Sử dụng</span>
+updateHeader(<span class="c-str">'header1'</span>);
+updateHeader(<span class="c-str">'header2'</span>);
+updateHeader(<span class="c-str">'header3'</span>);</pre>
+          </div>
+        </div>
+        <div class="example-box">
+          <b>Điểm khác biệt:</b> Good code chỉ viết logic MỘT LẦN, tái sử dụng
+          bằng tham số. Khi cần thay đổi, chỉ sửa 1 chỗ thay vì cả ba.
+        </div>
+
+        <h4
+          style="
+            font-family: &quot;Baloo 2&quot;, sans-serif;
+            margin-top: 24px;
+            font-size: 1rem;
+          "
+        >
+          Tái cấu trúc mã nguồn — cách triển khai DRY
+        </h4>
+        <table class="spec">
+          <tr>
+            <th>Bước</th>
+            <th>Việc cần làm</th>
+          </tr>
+          <tr>
+            <td>1. Nhận diện mẫu lặp</td>
+            <td>
+              Tìm kiếm các đoạn code giống nhau hoặc tương tự nhau trong dự án
+            </td>
+          </tr>
+          <tr>
+            <td>2. Tách logic chung</td>
+            <td>
+              Tạo hàm, class hoặc module chứa phần logic được dùng nhiều lần
+            </td>
+          </tr>
+          <tr>
+            <td>3. Thay thế bằng hàm</td>
+            <td>Thay các đoạn code lặp bằng lời gọi hàm với tham số phù hợp</td>
+          </tr>
+          <tr>
+            <td>4. Kiểm thử</td>
+            <td>Đảm bảo chức năng vẫn hoạt động đúng sau khi tái cấu trúc</td>
+          </tr>
+        </table>
+        <div class="pill-row">
+          <span class="pill"
+            >⚠️ Quy tắc quan trọng: sau mỗi lần refactor, LUÔN chạy lại chương
+            trình để chắc chắn kết quả không đổi — nếu đổi, đó không còn là
+            refactor thuần tuý nữa</span
+          >
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 24px"
+        >
+          8️⃣ RegExp — kiểm tra định dạng dữ liệu người dùng nhập
+        </h4>
+        <p style="color: var(--ink-soft); font-size: 0.9rem">
+          RegExp (Regular Expression / biểu thức chính quy) là 1 "khuôn mẫu" mô
+          tả định dạng chuỗi — cực kỳ hữu ích khi validate dữ liệu lấy từ DOM
+          (email, số điện thoại, mật khẩu...) trước khi xử lý tiếp.
+        </p>
+
+        <pre
+          class="code"
+        ><span class="c-com">// Tạo RegExp — 2 cách viết tương đương</span>
+<span class="c-key">const</span> pattern1 = <span class="c-fn">/hello/i</span>;              <span class="c-com">// literal — hay dùng nhất</span>
+<span class="c-key">const</span> pattern2 = <span class="c-key">new</span> RegExp(<span class="c-str">"hello"</span>, <span class="c-str">"i"</span>);  <span class="c-com">// constructor — khi pattern là biến động</span>
+
+<span class="c-com">// Áp dụng vào 1 input lấy từ DOM</span>
+<span class="c-key">const</span> email = document.querySelector(<span class="c-str">".email"</span>).value;
+<span class="c-key">const</span> emailPattern = <span class="c-fn">/^[\w.-]+@[\w-]+\.[a-z]{2,}$/i</span>;
+
+<span class="c-key">if</span> (emailPattern.test(email)) {
+  console.<span class="c-fn">log</span>(<span class="c-str">"Email hợp lệ ✅"</span>);
+} <span class="c-key">else</span> {
+  console.<span class="c-fn">log</span>(<span class="c-str">"Email sai định dạng ❌"</span>);
+}</pre>
+
+        <div class="grid2">
+          <div class="info-card">
+            <h4>Flags (cờ) — đặt sau dấu / cuối</h4>
+            <table class="spec" style="margin: 0">
+              <tr>
+                <td><code>g</code></td>
+                <td>Global — tìm tất cả, không dừng ở kết quả đầu tiên</td>
+              </tr>
+              <tr>
+                <td><code>i</code></td>
+                <td>Ignore case — không phân biệt hoa/thường</td>
+              </tr>
+              <tr>
+                <td><code>m</code></td>
+                <td>
+                  Multiline — <code>^</code> <code>$</code> khớp từng dòng thay
+                  vì cả chuỗi
+                </td>
+              </tr>
+              <tr>
+                <td><code>s</code></td>
+                <td>Dotall — cho <code>.</code> khớp cả ký tự xuống dòng</td>
+              </tr>
+            </table>
+          </div>
+          <div class="info-card">
+            <h4>Character class — nhóm ký tự hay dùng</h4>
+            <table class="spec" style="margin: 0">
+              <tr>
+                <td><code>\d</code> / <code>\D</code></td>
+                <td>1 chữ số (0-9) / KHÔNG phải chữ số</td>
+              </tr>
+              <tr>
+                <td><code>\w</code> / <code>\W</code></td>
+                <td>1 ký tự chữ/số/gạch dưới / ngược lại</td>
+              </tr>
+              <tr>
+                <td><code>\s</code> / <code>\S</code></td>
+                <td>1 khoảng trắng / KHÔNG phải khoảng trắng</td>
+              </tr>
+              <tr>
+                <td><code>.</code></td>
+                <td>Bất kỳ 1 ký tự nào (trừ xuống dòng)</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <table class="spec">
+          <tr>
+            <th>Cú pháp</th>
+            <th>Ý nghĩa</th>
+          </tr>
+          <tr>
+            <td><code>[abc]</code> / <code>[^abc]</code></td>
+            <td>1 ký tự nằm trong / KHÔNG nằm trong tập abc</td>
+          </tr>
+          <tr>
+            <td><code>[a-z]</code> / <code>[0-9]</code></td>
+            <td>1 ký tự trong khoảng a→z / 0→9</td>
+          </tr>
+          <tr>
+            <td><code>a|b</code></td>
+            <td>Khớp a HOẶC b</td>
+          </tr>
+          <tr>
+            <td><code>^</code> / <code>$</code></td>
+            <td>Đầu chuỗi / cuối chuỗi</td>
+          </tr>
+          <tr>
+            <td><code>+</code></td>
+            <td>Xuất hiện 1 lần trở lên</td>
+          </tr>
+          <tr>
+            <td><code>*</code></td>
+            <td>Xuất hiện 0 lần trở lên</td>
+          </tr>
+          <tr>
+            <td><code>?</code></td>
+            <td>Xuất hiện 0 hoặc 1 lần (tuỳ chọn)</td>
+          </tr>
+          <tr>
+            <td><code>{n}</code> / <code>{n,m}</code></td>
+            <td>Đúng n lần / từ n đến m lần</td>
+          </tr>
+          <tr>
+            <td><code>(x)</code></td>
+            <td>Nhóm bắt (capturing group) — dùng lại được kết quả</td>
+          </tr>
+        </table>
+
+        <div class="example-box">
+          <b>Giải mã pattern email ở trên:</b> <code>^[\w.-]+</code> = phần tên
+          bắt đầu chuỗi, gồm chữ/số/chấm/gạch ngang, ít nhất 1 ký tự ·
+          <code>@</code> = bắt buộc có ký tự @ · <code>[\w-]+</code> = tên miền
+          · <code>\.[a-z]{2,}$</code> = dấu chấm + đuôi domain ít nhất 2 chữ
+          cái, kết thúc chuỗi.
+        </div>
+
+        <h4
+          style="font-family: &quot;Baloo 2&quot;, sans-serif; margin-top: 22px"
+        >
+          Các phương thức RegExp hay dùng với DOM
+        </h4>
+        <table class="spec">
+          <tr>
+            <th>Phương thức</th>
+            <th>Ý nghĩa</th>
+          </tr>
+          <tr>
+            <td><code>regex.test(str)</code></td>
+            <td>
+              Trả về <code>true</code>/<code>false</code> — chuỗi có khớp
+              pattern không
+            </td>
+          </tr>
+          <tr>
+            <td><code>str.match(regex)</code></td>
+            <td>
+              Trả về mảng các đoạn khớp được, hoặc <code>null</code> nếu không
+              có
+            </td>
+          </tr>
+          <tr>
+            <td><code>str.replace(regex, "x")</code></td>
+            <td>Thay thế đoạn khớp bằng chuỗi khác</td>
+          </tr>
+          <tr>
+            <td><code>str.split(regex)</code></td>
+            <td>Tách chuỗi thành mảng dựa theo pattern</td>
+          </tr>
+        </table>
+
+        <pre
+          class="code"
+        ><span class="c-com">// Ví dụ thực tế — chỉ cho phép nhập số vào input</span>
+document.querySelector(<span class="c-str">".phone"</span>).addEventListener(<span class="c-str">"input"</span>, <span class="c-key">function</span> (e) {
+  e.target.value = e.target.value.replace(<span class="c-fn">/[^0-9]/g</span>, <span class="c-str">""</span>);
+  <span class="c-com">// [^0-9] = "không phải số" → thay mọi ký tự không phải số bằng rỗng
+  // → gõ chữ vào ô .phone sẽ tự động bị xoá ngay lập tức</span>
+});</pre>
+
+        <div class="pill-row">
+          <span class="pill"
+            >🔗 Liên hệ Form: dùng RegExp để validate trước khi cho submit, thay
+            vì chỉ dựa vào type="email" của HTML</span
+          >
+          <span class="pill"
+            >⚠️ RegExp mạnh nhưng dễ viết sai — nên test kỹ với nhiều trường hợp
+            input khác nhau (rỗng, có khoảng trắng, ký tự đặc biệt...)</span
+          >
+        </div>
       </div>
 
-      <!-- 9. ATTRIBUTE VS PROPERTY -->
+      <!-- 10. ATTRIBUTE VS PROPERTY -->
       <div class="topic c-yellow" id="attrprop">
         <div class="topic-head">
-          <div class="topic-num">9</div>
+          <div class="topic-num">10</div>
           <div>
             <h3>Attribute vs Property</h3>
             <div class="sub">
@@ -2798,10 +3658,10 @@ el.classList;   <span class="c-com">// object đặc biệt: .add() .remove() .t
 console.<span class="c-fn">log</span>(el.dataset.userId);   <span class="c-com">// "42"</span></pre>
       </div>
 
-      <!-- 10. PIG GAME PROJECT -->
+      <!-- 11. PIG GAME PROJECT -->
       <div class="topic c-pink" id="piggame">
         <div class="topic-head">
-          <div class="topic-num">10</div>
+          <div class="topic-num">11</div>
           <div>
             <h3>🎲 Dự án thực hành: Pig Game</h3>
             <div class="sub">
@@ -3061,10 +3921,10 @@ btnNew.addEventListener(<span class="c-str">'click'</span>, init);</pre>
         </div>
       </div>
 
-      <!-- 11. MODAL WINDOW PROJECT -->
+      <!-- 12. MODAL WINDOW PROJECT -->
       <div class="topic c-teal" id="modal">
         <div class="topic-head">
-          <div class="topic-num">11</div>
+          <div class="topic-num">12</div>
           <div>
             <h3>🪟 Dự án thực hành: Modal Window</h3>
             <div class="sub">
@@ -3246,10 +4106,10 @@ document.addEventListener(<span class="c-str">'keydown'</span>, <span class="c-k
         </div>
       </div>
 
-      <!-- 12. GUESS MY NUMBER PROJECT -->
+      <!-- 13. GUESS MY NUMBER PROJECT -->
       <div class="topic c-yellow" id="guessnumber">
         <div class="topic-head">
-          <div class="topic-num">12</div>
+          <div class="topic-num">13</div>
           <div>
             <h3>🔢 Dự án thực hành: Guess My Number</h3>
             <div class="sub">
@@ -3500,14 +4360,16 @@ btnAgain.addEventListener(<span class="c-str">'click'</span>, <span class="c-key
       <div class="foot-card">
         <h3>🎯 Ôn lại nhanh trước khi ngủ</h3>
         <p>
-          Biến lưu giá trị · Kiểu dữ liệu quyết định giá trị đó là gì · Toán tử
-          xử lý giá trị · Cấu trúc điều khiển ra quyết định · Hàm đóng gói logic
-          để tái sử dụng · Mảng lưu nhiều giá trị cùng lúc · Vòng lặp tự động
-          hoá việc lặp lại · DOM là cầu nối để JS đọc/sửa trang HTML đang chạy ·
-          Attribute là giá trị HTML gốc còn Property là trạng thái DOM hiện tại
-          · Pig Game, Modal Window và Guess My Number là nơi ráp tất cả lại
-          thành sản phẩm hoàn chỉnh. Quay lại bản đồ tư duy bất cứ khi nào cần
-          ôn nhanh — hoặc bấm nút bên dưới để chuyển bài học!
+          Vị trí thẻ script quyết định code có tìm thấy đúng phần tử HTML hay
+          không · Biến lưu giá trị · Kiểu dữ liệu quyết định giá trị đó là gì ·
+          Toán tử xử lý giá trị · Cấu trúc điều khiển ra quyết định · Hàm đóng
+          gói logic để tái sử dụng · Mảng lưu nhiều giá trị cùng lúc · Vòng lặp
+          tự động hoá việc lặp lại · DOM là cầu nối để JS đọc/sửa trang HTML
+          đang chạy, RegExp giúp kiểm tra định dạng dữ liệu · Attribute là giá
+          trị HTML gốc còn Property là trạng thái DOM hiện tại · Pig Game, Modal
+          Window và Guess My Number là nơi ráp tất cả lại thành sản phẩm hoàn
+          chỉnh. Quay lại bản đồ tư duy bất cứ khi nào cần ôn nhanh — hoặc bấm
+          nút bên dưới để chuyển bài học!
         </p>
         <div
           style="
